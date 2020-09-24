@@ -7,7 +7,7 @@ The programming language used will be Python due to the connections already root
 
 The full documentation will include:
   - Wiring Schematics
-  - Model number of the components used and their associated specs sheets
-  - CAD models of the tool
-  - Complete bill of materials
+  - Components Model Numbers and Spec Sheets
+  - CAD Model
+  - Bill of Materials
   - Software 
