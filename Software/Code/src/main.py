@@ -1,3 +1,4 @@
+# chase
 # This will be the file that is run on startup of the machine
 # likely bash scripting will be needed to start this at start up
 # will need an option to exit the startup of the bash script in the event the raspberrypi is being updated
