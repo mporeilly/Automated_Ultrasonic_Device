@@ -39,7 +39,12 @@ print(data1.measurement)
 print(data1.percentage_remaining())
 
 # build matrix to place the data points in to their respective places
+# creating list
 
+#https://www.geeksforgeeks.org/how-to-create-a-list-of-object-in-python-class/
+#list = [data1, DataPoint()]
+
+# appending instances to list
 
 # build user interface
 # create a matrix which is able to display the
