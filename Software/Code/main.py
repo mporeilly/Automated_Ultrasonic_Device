@@ -1,32 +1,22 @@
-# chase
 # This will be the file that is run on startup of the machine
 # likely bash scripting will be needed to start this at start up
 # will need an option to exit the startup of the bash script in the event the raspberrypi is being updated
 
 
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-# user selected nominal thickness of plate
-nominal_thickness = 2
-
 
 # https://www.youtube.com/watch?v=ZDa-Z5JzLYM&ab_channel=CoreySchafer
-class DataPoint:
+class DataPoint:                                                        # defining class for data collected
+    # user selected nominal thickness of plate
+    # will look to pull from user within the gui
+    nominal_thickness = 2
 
-    def __init__(self, measurement, x_coordinate, y_coordinate):
+    def __init__(self, measurement, x_coordinate, y_coordinate):        # defining objects for the class
         self.measurement = measurement
         self.x_coordinate = x_coordinate
         self.y_coordinate = y_coordinate
+        self.percentage = self.measurement / self.nominal_thickness * 100  # need to specify significant digits
         # should add a color to the data point for displaying later
 
-    def percentage_remaining(self):
-        self.measurement = int(self.measurement / nominal_thickness * 100)
-
-    # def measurement(self):                          #creating a method to pull the data points
-    # return self.measurement()
 
 
 # data intake section
@@ -35,10 +25,10 @@ class DataPoint:
 # there will need to be processing of the data delivered where the lowest value acquired is set to measurement
 
 data1 = DataPoint(2.1, 4, 6)
+data2 = DataPoint(1.934,3,4)
 
-print(data1.measurement)
-print(data1.percentage_remaining())
-
+print(data1.percentage)
+print(data2.percentage)
 # build matrix to place the data points in to their respective places
 # creating list
 
