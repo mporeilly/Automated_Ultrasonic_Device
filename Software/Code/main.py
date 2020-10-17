@@ -25,7 +25,7 @@ class DataPoint:                                                        # defini
 # this section will need to match the baud rate of the information from the serial port on the scope
 # there will need to be processing of the data delivered where the lowest value acquired is set to measurement
 
-data1 = DataPoint(6, 4, 6)
+data1 = DataPoint(1.4, 4, 6)
 data2 = DataPoint(1.934,3,4)
 
 #print(data1.percentage)
@@ -49,9 +49,10 @@ test_value_matrix.append(data2)
 with open('file_test.csv','w') as output_file:      # output_file is a variable for the file being exported w means write
     csv_writer = csv.writer(output_file, delimiter=',')  # assigning a variable to control the format of the file exported
 
+    csv_writer.writerow(['X Coordinate','Y Coordinate','Measurement Value','Measurement Units','Percentage Remaining'])
+        
     for line in test_value_matrix:                      # looping through the lines in the test matrix
-        csv_writer.writerow(['Measurement Number','X Coordinate','Y Coordinate','Measurement Value','Measurement Units','Percentage Remaining'])
-        csv_writer.writerow([line,line.x_coordinate,line.y_coordinate,line.measurement, line.units,line.percentage])                       # writing rows into the csv file 
+        csv_writer.writerow([line.x_coordinate,line.y_coordinate,line.measurement, line.units,line.percentage])                       # writing rows into the csv file 
 
 
 # build user interface
