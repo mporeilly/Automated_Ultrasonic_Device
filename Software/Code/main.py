@@ -39,3 +39,38 @@ print(data2.percentage)
 
 # build user interface
 # create a matrix which is able to display the
+
+# Stepper Motor control (wheels)
+
+# install/import libraries (RPi.GPIO, time, gpiozero?) as GPIO
+
+# import pip
+# pip install RPi.GPIO
+# import RPi.GPIO as GPIO   ;not sure if this works
+
+# No finalized motor specs yet
+# for now assume 2048 steps/rev. Half stepping for more precision (4096 steps/rev)
+
+# Assign 4 gpio pins as output
+output = [1, 2, 3, 4]  # list of the 4 gpio pins that will be used as outputs, not sure of actual pin numbers rn
+
+# create 8x4 array representing the sequence of pin activation for half stepping. Assuming dual phase
+sequence = [[1, 0, 0, 0], [1, 1, 0, 0], [0, 1, 0, 0], [0, 1, 1, 0],
+           [0, 0, 1, 0], [0, 0, 1, 1], [0, 0, 0, 1], [1, 0, 0, 1]]  # 4 pins, 8 (half) steps
+
+# convert linear distance that we want to move into degrees of rotation, then degrees into "x" steps
+# create nested for-loop that energizes the pins in order (using the sequence array) to move the stepper "x" steps
+# initialize variable for number of 8 step cycles it will take to turn our desired unit distance
+# with the dummy specs outlined, 512 cycles = 360 degrees full revolution, obviously we need much less
+
+cycles = 512
+
+for spin in range(cycles):  # loops through the number of 8 step cycles desired
+    for step in range(8):  # looping through the 8 half steps
+        for pin in range(4):  # looping through the pins 1 to 4 (index 0 to 3 of the list)
+            GPIO.output(output[pin], sequence[step][pin])  # Sets each pin output in sequence, library based command
+
+
+# may have to play around with different time delays, optimize for speed/torque
+# will have to repeat this block of code each time the device is done scanning in the x direction
+# Causes device to inch forward in the y direction before scanning again in the x direction (serpentine scanning path)
