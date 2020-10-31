@@ -2,7 +2,11 @@
 # likely bash scripting will be needed to start this at start up
 # will need an option to exit the startup of the bash script in the event the raspberrypi is being updated
 
-import csv
+# import statements for the normal modules
+#import csv    # this was moved to the required function
+
+# import statements for the functions that we write
+import csv_function_file
 
 # https://www.youtube.com/watch?v=ZDa-Z5JzLYM&ab_channel=CoreySchafer
 class DataPoint:                                                        # defining class for data collected
@@ -28,32 +32,15 @@ class DataPoint:                                                        # defini
 data1 = DataPoint(1.4, 4, 6)
 data2 = DataPoint(1.934,3,4)
 
-#print(data1.percentage)
-
-# build matrix to place the data points in to their respective places
-# creating list
-
+# move into a a function for recording data
 #https://www.geeksforgeeks.org/how-to-create-a-list-of-object-in-python-class/
-test_value_matrix = []
+test_value_matrix = []                  # initalizing the array
 
 test_value_matrix.append(data1)         # this creates an arrays of objects
-test_value_matrix.append(data2)
-# appending instances to list
+test_value_matrix.append(data2)         # appending instances to list
 
-#for line in test_value_matrix:
-#    print(line.measurement)
-
-# writing csv file
-# https://www.youtube.com/watch?v=q5uM4VKywbA&ab_channel=CoreySchafer
-
-with open('file_test.csv','w') as output_file:      # output_file is a variable for the file being exported w means write
-    csv_writer = csv.writer(output_file, delimiter=',')  # assigning a variable to control the format of the file exported
-
-    csv_writer.writerow(['X Coordinate','Y Coordinate','Measurement Value','Measurement Units','Percentage Remaining'])
-        
-    for line in test_value_matrix:                      # looping through the lines in the test matrix
-        csv_writer.writerow([line.x_coordinate,line.y_coordinate,line.measurement, line.units,line.percentage])                       # writing rows into the csv file 
-
+file_name = input('pick file name: ') # asking the user for the file name of the csv file
+csv_function_file.save_csv_file_func(test_value_matrix,file_name + '.csv') # calling the fucntion from the file csv_function_file
 
 # build user interface
 # create a matrix which is able to display the
