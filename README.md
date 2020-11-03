@@ -17,8 +17,10 @@ The full documentation will include:
   INSTALL INSTRUCTIONS (Building the frame work to allow this to be the only steps needed to update a stock Raspberrypi) (Will look to put a package together so unneccissary files are excluded from the download)
 1. $ apt install python3
 2. $ apt install python3-pip
-3. $ wget https://github.com/...
-4. $ unzip master.zip
-5. $ cd FILENAME
-6. $ pip3 install -r requirements.txt
-7. $ python3 MAINFILE.py
+3. $ cd /home/pi/Desktop/
+4. $ mkdir scanner
+5. $ cd scanner
+6. $ wget https://github.com/...
+7. $ unzip master.zip
+8. $ pip3 install -r requirements.txt
+
