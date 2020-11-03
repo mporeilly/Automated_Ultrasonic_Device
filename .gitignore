@@ -1,8 +1,7 @@
-
 */.DS_Store
 .DS_Store
 *Software/Code/.idea/
 *Software/Code/bin
 *Software/Code/include
 *Software/Code/lib
-Software/Code/file_test.csv
+Software/Code/*.csv
