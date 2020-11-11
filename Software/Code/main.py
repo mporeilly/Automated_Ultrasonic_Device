@@ -40,37 +40,74 @@ print(data2.percentage)
 # build user interface
 # create a matrix which is able to display the
 
-# Stepper Motor control (wheels)
+# Stepper Motor control
 
-# install/import libraries (RPi.GPIO, time, gpiozero?) as GPIO
-
+# install/import libraries (RPi.GPIO as GPIO)
 # import pip
 # pip install RPi.GPIO
 # import RPi.GPIO as GPIO   ;not sure if this works
 
-# No finalized motor specs yet
-# for now assume 2048 steps/rev. Half stepping for more precision (4096 steps/rev)
+# for now assume nema17 dual shaft. Half stepping for more precision (0.9degrees/step)
 
-# Assign 4 gpio pins as output
-output = [1, 2, 3, 4]  # list of the 4 gpio pins that will be used as outputs, not sure of actual pin numbers rn
+# Assign gpio pins as outputs
+wheelOutpins = [1, 2, 3, 4]  # list of the 4 gpio pins that will be used as outputs for drive motor
+scannerOutpins = [5, 6, 7, 8]  # list of pins for scanner motor (don't know the actual pin numbers yet)
 
-# create 8x4 array representing the sequence of pin activation for half stepping. Assuming dual phase
-sequence = [[1, 0, 0, 0], [1, 1, 0, 0], [0, 1, 0, 0], [0, 1, 1, 0],
-           [0, 0, 1, 0], [0, 0, 1, 1], [0, 0, 0, 1], [1, 0, 0, 1]]  # 4 pins, 8 (half) steps
+for pin in wheelOutpins:  # assigning pins as outputs for drive motor, setting them as low for now
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, 0)
+for pin in scannerOutpins:  # assigning pins as outputs for scanner motor, setting them as low for now
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, 0)
 
-# convert linear distance that we want to move into degrees of rotation, then degrees into "x" steps
-# create nested for-loop that energizes the pins in order (using the sequence array) to move the stepper "x" steps
-# initialize variable for number of 8 step cycles it will take to turn our desired unit distance
-# with the dummy specs outlined, 512 cycles = 360 degrees full revolution, obviously we need much less
+radius = 1  # temporary wheel radius
+belt = 1  # temporary belt radius
+scanPath = 12  # length of scanner path
+degrees = 1.8  # degrees per step (for full stepping, half stepping is utilized in the move functions)
+distance = 0.75  # desired forward distance per scan, in inches (could make this a user input with GUI)
+count = 0  # counts number of scans, used for while-loop exit condition
 
-cycles = 512
+from WheelStepperFunction import movewheels  # importing created functions from external files
+from TransducerStepperFunction import movescanner
 
-for spin in range(cycles):  # loops through the number of 8 step cycles desired
-    for step in range(8):  # looping through the 8 half steps
-        for pin in range(4):  # looping through the pins 1 to 4 (index 0 to 3 of the list)
-            GPIO.output(output[pin], sequence[step][pin])  # Sets each pin output in sequence, library based command
+go = 1
+direction = "forward"
 
+# forward scan loop
+while count < ((12/distance)+1):  # (12 inches of grid to scan / distance per scan = number of scans) +1 scan at start
+    if go == 1:
+        go = 0
+        go = movescanner(belt, degrees, scanPath, scannerOutpins, direction)
+        count += 1
+    if go == 1:
+        go = 0
+        direction = "forward"
+        go = movewheels(radius, degrees, distance, wheelOutpins, direction)
+
+        if count % 2 != 0:
+            direction = "reverse"
+        else:
+            direction = "forward"
+
+go = 1
+direction = "reverse"
+
+# Reverse scan loop
+while count < (
+        (12 / distance) + 1):  # (12 inches of grid to scan / distance per scan = number of scans) +1 scan at start
+    if go == 1:
+        go = 0
+        go = movescanner(belt, degrees, scanPath, scannerOutpins, direction)
+        count += 1
+    if go == 1:
+        go = 0
+        direction = "reverse"
+        go = movewheels(radius, degrees, distance, wheelOutpins, direction)
+
+        if count % 2 != 0:
+            direction = "forward"
+        else:
+            direction = "reverse"
 
 # may have to play around with different time delays, optimize for speed/torque
-# will have to repeat this block of code each time the device is done scanning in the x direction
 # Causes device to inch forward in the y direction before scanning again in the x direction (serpentine scanning path)
