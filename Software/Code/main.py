@@ -44,3 +44,5 @@ csv_function_file.save_csv_file_func(test_value_matrix,file_name + '.csv') # cal
 
 # build user interface
 # create a matrix which is able to display the
+
+#https://pimylifeup.com/raspberry-pi-on-screen-keyboard/

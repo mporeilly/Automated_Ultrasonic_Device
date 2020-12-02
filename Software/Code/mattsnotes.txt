@@ -4,3 +4,7 @@ this will be a place holders
 Matplotlib:
 This is for live updating a plot which will be used in the data collection process 
 https://pythonprogramming.net/python-matplotlib-live-updating-graphs/
+
+
+Multi threading video
+https://www.youtube.com/watch?v=IEEhzQoKtQU&ab_channel=CoreySchafer
