@@ -5,3 +5,4 @@
 *Software/Code/include
 *Software/Code/lib
 Software/Code/*.csv
+*.pyc
