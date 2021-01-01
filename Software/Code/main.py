@@ -12,11 +12,11 @@ root = tk.Tk()                                          # root is the window sim
 root.title('Scanner Application')                       # header info
 root.geometry('800x480')                                # window size 
 
-# apparently the text being white is an OSX problem should be fine on the linux distrubution
+# all text is white, apparently the text being white is an OSX problem should be fine on the linux distrubution
 # https://www.reddit.com/r/learnpython/comments/8tso7e/cannot_change_background_color_of_tkinter_buttons/
 
-# initalization of the units indicator
-milimeter_selection = tk.IntVar()                       # createion of the unit boolean indicator
+# units indicator radio buttons
+milimeter_selection = tk.IntVar()                       # creation of the unit indicator starts at 0 with no selection
 
 print(milimeter_selection.get())                        # the value starts off at 0 this will be used for the selection statements to make sure teh user inputs correct data
 def clicked(value): 
@@ -26,10 +26,13 @@ def clicked(value):
         print(value,'mm')
 
 
-unit_selector1 = tk.Radiobutton(root, text=' mm ', variable=milimeter_selection, value=2, command=lambda: clicked(milimeter_selection.get()))
-unit_selector1.grid(row=3, column=1)
-unit_selector2 = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=1, command=lambda: clicked(milimeter_selection.get()))
-unit_selector2.grid(row=4, column=1)
+radio_mm = tk.Radiobutton(root, text=' mm ', variable=milimeter_selection, value=2, command=lambda: clicked(milimeter_selection.get()))
+radio_mm.grid(row=3, column=1, sticky=tk.W)
+radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=1, command=lambda: clicked(milimeter_selection.get()))
+radio_in.grid(row=4, column=1, sticky=tk.W)
+
+
+# main top buttons 
 
 myLabel = tk.Label(root, text='Unit Selection:')        # labels the unit selection area of the GUI
 myLabel.grid(row=3, column=0)
@@ -46,6 +49,17 @@ runscan_button.grid(row=1, column=2)
 stopscan_button = tk.Button(root, text='Stop Scan')
 stopscan_button.grid(row=1, column=3)
 
+# scan dimensions 
+
+width_label = tk.Label(root, text='Scan Width: ')
+width_label.grid(row=5, column=0)
+length_label = tk.Label(root, text='Scan length: ')
+length_label.grid(row=6, column=0)
+
+width_textbox = tk.Text(root, font=('Helvetica',14), width=10, height=5)
+width_label.grid(row=5, column=0)
+# length_textbox = tk.Text(root)
+# length_label.grid(row=6, column=1)
 
 root.mainloop() # starts the pop up window
 
