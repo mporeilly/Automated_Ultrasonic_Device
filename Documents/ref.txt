@@ -1,5 +1,0 @@
-Links
-
-https://community.victronenergy.com/articles/10516/howto-use-a-hdmi-screen-with-usb-touch-panel-and-u.html
-https://www.youtube.com/watch?v=LUbhPKBL_IU&ab_channel=rdagger68
-https://www.raspberrypi.org/documentation/usage/gpio/
