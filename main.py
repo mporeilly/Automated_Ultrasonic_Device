@@ -7,18 +7,11 @@ root.title('Scanner Application')                       # header info
 root.geometry('370x200')                                # window size 
 
 
-# testing if global variables will eliminate the function passing error
-global width_textbox
-global length_textbox
-global milimeter_selection
-global voltage_selection
-
 # units indicator radio buttons
 milimeter_selection = tk.IntVar()                       # creation of the unit indicator starts at 0 with no selection
-width_selection = tk.StringVar()
-length_selection = tk.StringVar()
 voltage_selection = tk.IntVar()
- 
+width_textbox = tk.StringVar()
+length_textbox = tk.StringVar()
 
 
 #print(milimeter_selection.get())                        # the value starts off at 0 this will be used for the selection statements to make sure the user inputs correct data
@@ -34,23 +27,16 @@ radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value
 radio_in.grid(row=4, column=1, sticky=tk.W)
 
 
-def scan_pass_func():
+def scan_pass_func(width, length, thick_max,thick_min, unit ):
     # conversion function to bypass issues with passing a tkinter variable to a function
-    print(width_selection.get())
-    width = width_selection.get()
-    length = length_selection.get()
-    unit = milimeter_selection.get()
-    voltage = voltage_selection.get()
-    print(str(unit) + ' scan_pass_func')
-    print(width + ' this should be the width of the scan area')
+    print(width + " this is the width")
+
     
     #scan_func2(width,length,unit,voltage)
 
 # voltage selector 
 radio_mm = tk.Radiobutton(root, text=' 0 to 1V ', variable=voltage_selection, value=2) #, command=lambda: clicked(milimeter_selection.get()))
 radio_mm.grid(row=3, column=3, sticky=tk.W)
-radio_in = tk.Radiobutton(root, text=' 0 to 10V ', variable=voltage_selection, value=1) #, command=lambda: clicked(milimeter_selection.get()))
-radio_in.grid(row=4, column=3, sticky=tk.W)
 
 myLabel = tk.Label(root, text='Voltage Range:')        # labels the unit selection area of the GUI
 myLabel.grid(row=3, column=2)
@@ -69,16 +55,16 @@ length_textbox.grid(row=6, column=1, sticky=tk.W)
 
 # selection statements which allow the top buttons to be activated
 
-width_label = tk.Label(root, text='Lower Limit:')
-width_label.grid(row=7, column=0)
-length_label = tk.Label(root, text='Higher Limit:')
-length_label.grid(row=8, column=0)
+thick_min_label = tk.Label(root, text='Lower Limit:')           # this is for tracking the 
+thick_min_label.grid(row=7, column=0)
+thick_max_label = tk.Label(root, text='Higher Limit:')
+thick_max_label.grid(row=8, column=0)
 
-width_textbox = tk.Entry(root, width=7)
-width_textbox.grid(row=7, column=1, sticky=tk.W)
+thick_min_textbox = tk.Entry(root, width=7)
+thick_min_textbox.grid(row=7, column=1, sticky=tk.W)
 
-length_textbox = tk.Entry(root, width=7)
-length_textbox.grid(row=8, column=1, sticky=tk.W)
+thick_max_textbox = tk.Entry(root, width=7)
+thick_max_textbox.grid(row=8, column=1, sticky=tk.W)
 
 # main top buttons 
 
@@ -91,7 +77,7 @@ openfile_button.grid(row=1, column=0)
 savefile_button = tk.Button(root, text='Save File')
 savefile_button.grid(row=1, column=1)
 
-runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_pass_func() )
+runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_pass_func(width_textbox.get()) )
 runscan_button.grid(row=1, column=2)
 
 stopscan_button = tk.Button(root, text='Stop Scan')
