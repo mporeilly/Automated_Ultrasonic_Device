@@ -1,51 +1,58 @@
-# This will be the file that is run on startup of the machine
-# likely bash scripting will be needed to start this at start up
-# will need an option to exit the startup of the bash script in the event the raspberrypi is being updated
-
-# import statements for the functions that we write
 import tkinter as tk                                    # import the package for the window 
-import csv_function_file                                # import the custom function for saving to csv file 
-#import scan_function #needs a stop flag/ command needs to fit into chase's code need it to return the array of data 
-# placeholder for the save feature     
+#import csv_function_file                                # import the custom function for saving to csv file 
+from scan_function import scan_func2    
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
 root.geometry('370x200')                                # window size 
 
-# all text is white, apparently the text being white is an OSX problem should be fine on the linux distrubution
-# https://www.reddit.com/r/learnpython/comments/8tso7e/cannot_change_background_color_of_tkinter_buttons/
+
+# testing if global variables will eliminate the function passing error
+global width_textbox
+global length_textbox
+global milimeter_selection
+global voltage_selection
 
 # units indicator radio buttons
 milimeter_selection = tk.IntVar()                       # creation of the unit indicator starts at 0 with no selection
+width_selection = tk.StringVar()
+length_selection = tk.StringVar()
+voltage_selection = tk.IntVar()
 
-print(milimeter_selection.get())                        # the value starts off at 0 this will be used for the selection statements to make sure teh user inputs correct data
-def clicked(value): 
-    if value == 1:                                      # value of 1 indicates inches is selected
-        print(value,'inches')      
-    else:
-        print(value,'mm')
+#print(milimeter_selection.get())                        # the value starts off at 0 this will be used for the selection statements to make sure the user inputs correct data
+# def clicked(value): 
+#     if value == 1:                                      # value of 1 indicates inches is selected
+#         print(value,'inches')      
+#     else:
+#         print(value,'mm')
 
-radio_mm = tk.Radiobutton(root, text=' mm ', variable=milimeter_selection, value=2, command=lambda: clicked(milimeter_selection.get()))
+radio_mm = tk.Radiobutton(root, text=' mm ', variable=milimeter_selection, value=2) #, command=lambda: clicked(milimeter_selection.get()))
 radio_mm.grid(row=3, column=1, sticky=tk.W)
-radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=1, command=lambda: clicked(milimeter_selection.get()))
+radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=1) #, command=lambda: clicked(milimeter_selection.get()))
 radio_in.grid(row=4, column=1, sticky=tk.W)
 
-# voltage selector
-voltage_selection = tk.IntVar() 
-radio_mm = tk.Radiobutton(root, text=' 0 to 1V ', variable=voltage_selection, value=2, command=lambda: clicked(milimeter_selection.get()))
+
+def scan_pass_func():
+    # conversion function to bypass issues with passing a tkinter variable to a function
+    print(width_selection.get())
+    width = width_selection.get()
+    length = length_selection.get()
+    unit = milimeter_selection.get()
+    voltage = voltage_selection.get()
+    print(str(unit) + ' scan_pass_func')
+    print(width + ' this should be the width of the scan area')
+    
+    #scan_func2(width,length,unit,voltage)
+
+# voltage selector 
+radio_mm = tk.Radiobutton(root, text=' 0 to 1V ', variable=voltage_selection, value=2) #, command=lambda: clicked(milimeter_selection.get()))
 radio_mm.grid(row=3, column=3, sticky=tk.W)
-radio_in = tk.Radiobutton(root, text=' 0 to 10V ', variable=voltage_selection, value=1, command=lambda: clicked(milimeter_selection.get()))
+radio_in = tk.Radiobutton(root, text=' 0 to 10V ', variable=voltage_selection, value=1) #, command=lambda: clicked(milimeter_selection.get()))
 radio_in.grid(row=4, column=3, sticky=tk.W)
 
 myLabel = tk.Label(root, text='Voltage Range:')        # labels the unit selection area of the GUI
 myLabel.grid(row=3, column=2)
 # scan dimensions 
-
-def scan_test(value):
-    print(value)
-
-width_selection = tk.IntVar()
-length_selection = tk.IntVar()
 
 width_label = tk.Label(root, text='Scan Width:')
 width_label.grid(row=5, column=0)
@@ -70,9 +77,6 @@ width_textbox.grid(row=7, column=1, sticky=tk.W)
 
 length_textbox = tk.Entry(root, width=7)
 length_textbox.grid(row=8, column=1, sticky=tk.W)
-#ef activation_allowed(milimeter_se,width_textbox,length_textbox):
-#    if milimeter_se == 1 or milimeter_se == 2:
-
 
 # main top buttons 
 
@@ -85,7 +89,7 @@ openfile_button.grid(row=1, column=0)
 savefile_button = tk.Button(root, text='Save File')
 savefile_button.grid(row=1, column=1)
 
-runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_test(width_textbox.get() + ' width value. '+length_textbox.get() + ' length value'))
+runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_pass_func() )
 runscan_button.grid(row=1, column=2)
 
 stopscan_button = tk.Button(root, text='Stop Scan')
