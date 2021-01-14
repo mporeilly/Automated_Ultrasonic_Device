@@ -18,6 +18,8 @@ milimeter_selection = tk.IntVar()                       # creation of the unit i
 width_selection = tk.StringVar()
 length_selection = tk.StringVar()
 voltage_selection = tk.IntVar()
+ 
+
 
 #print(milimeter_selection.get())                        # the value starts off at 0 this will be used for the selection statements to make sure the user inputs correct data
 # def clicked(value): 
