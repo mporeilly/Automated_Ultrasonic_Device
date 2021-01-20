@@ -4,5 +4,5 @@
 
 apt install python3 -y
 apt install python3-pip -y
-pip3 install matplotlib -y
-pip3 install tkinter -y
+apt install python3-tk -y
+pip3 install matplotlib
