@@ -1,5 +1,5 @@
 # Capstone
-The files within this repository hold the software used to control an automated UT device that is designed to complete API 563 tank inspections. The controller will be a Rasberry Pi 
+The files within this repository contain software used to control an automated UT device that is designed to complete API 563 tank inspections. The software was designed around a Raspberry Pi and UT scopes capable of outputting scan data as analog voltage signals between 0 - 1 volt. Please refer to the wiring diagram for setup of the wiring harness.
   
   INSTALL INSTRUCTIONS:   
 1. $ Download the GitHub repo to the Raspberry PI
