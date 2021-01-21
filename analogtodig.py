@@ -1,3 +1,4 @@
+#https://github.com/tmckay1/pi_read_analog/blob/master/potentiometer.py
 import busio
 import digitalio
 import board
