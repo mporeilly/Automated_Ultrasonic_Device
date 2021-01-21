@@ -13,3 +13,8 @@ Dec 2, 2020
 	https://www.youtube.com/watch?v=IEEhzQoKtQU&ab_channel=CoreySchafer
 - cpu bound path (numerical computation) -> multi processing
 	https://www.youtube.com/watch?v=fKl2JW_qrso&ab_channel=CoreySchafer
+
+
+Need to include in the instructions for the install to have the pins work
+	https://www.youtube.com/watch?v=YJfBBphzLHg&ab_channel=TyandGigBuilds    time stamp 4:30
+	https://learn.adafruit.com/mcp3008-spi-adc/python-circuitpython
