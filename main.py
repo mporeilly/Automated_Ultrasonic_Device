@@ -1,6 +1,6 @@
 import tkinter as tk                                    # import the package for the window 
 #import csv_function_file                                # import the custom function for saving to csv file 
-from scan_function import scan_func2    
+from scan_function import scan_func    
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
@@ -26,14 +26,6 @@ radio_mm.grid(row=3, column=1, sticky=tk.W)
 radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=1) #, command=lambda: clicked(milimeter_selection.get()))
 radio_in.grid(row=4, column=1, sticky=tk.W)
 
-
-def scan_pass_func(width, length, thick_max,thick_min, unit ):
-    # conversion function to bypass issues with passing a tkinter variable to a function
-    print(width + " this is the width")
-
-    
-    #scan_func2(width,length,unit,voltage)
-
 # voltage selector 
 radio_mm = tk.Radiobutton(root, text=' 0 to 1V ', variable=voltage_selection, value=2) #, command=lambda: clicked(milimeter_selection.get()))
 radio_mm.grid(row=3, column=3, sticky=tk.W)
@@ -55,9 +47,9 @@ length_textbox.grid(row=6, column=1, sticky=tk.W)
 
 # selection statements which allow the top buttons to be activated
 
-thick_min_label = tk.Label(root, text='Lower Limit:')           # this is for tracking the 
+thick_min_label = tk.Label(root, text='Gate Start:')           # this is for tracking the 
 thick_min_label.grid(row=7, column=0)
-thick_max_label = tk.Label(root, text='Higher Limit:')
+thick_max_label = tk.Label(root, text='Gate Width:')  # span of the thickness from the start
 thick_max_label.grid(row=8, column=0)
 
 thick_min_textbox = tk.Entry(root, width=7)
@@ -77,7 +69,7 @@ openfile_button.grid(row=1, column=0)
 savefile_button = tk.Button(root, text='Save File')
 savefile_button.grid(row=1, column=1)
 
-runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_pass_func(width_textbox.get()) )
+runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_func(width_textbox.get()) )
 runscan_button.grid(row=1, column=2)
 
 stopscan_button = tk.Button(root, text='Stop Scan')
