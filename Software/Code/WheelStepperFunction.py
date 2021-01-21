@@ -4,10 +4,10 @@ def movewheels(radius, degrees, distance, outpins, direction):
     import time
     # Import RPi.GPIO
 
-    forwardsequence = [[1, 0, 0, 0], [1, 1, 0, 0], [0, 1, 0, 0], [0, 1, 1, 0],
-                       [0, 0, 1, 0], [0, 0, 1, 1], [0, 0, 0, 1], [1, 0, 0, 1]]
-    backwardsequence = [[1, 0, 0, 1], [0, 0, 0, 1], [0, 0, 1, 1], [0, 0, 1, 0],
-                        [0, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0], [1, 0, 0, 0]]
+    forwardsequence = 1 # [[1, 0, 0, 0], [1, 1, 0, 0], [0, 1, 0, 0], [0, 1, 1, 0],
+                        # [0, 0, 1, 0], [0, 0, 1, 1], [0, 0, 0, 1], [1, 0, 0, 1]]
+    backwardsequence = 0 # [[1, 0, 0, 1], [0, 0, 0, 1], [0, 0, 1, 1], [0, 0, 1, 0],
+                        # [0, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0], [1, 0, 0, 0]]
 
     if direction == "forward":
         sequence = forwardsequence
@@ -16,9 +16,6 @@ def movewheels(radius, degrees, distance, outpins, direction):
     step_angle = degrees/2
     # steps_per_rev = (360/degrees)*2  # should equal 400 with nema17 dual shaft, 1.8deg step angle
     # move_angle = (distance/radius)*360/(2*math.pi)
-    # steps = round(move_angle/step_angle)
-    # cycles = steps/8
-
     # note that the smallest angle we can resolve is 0.9deg or 0.015708rads, this limits our distance precision
     # smaller wheel radius will be best for resolving smaller distances / come closer to target specified distances
     counter = 0

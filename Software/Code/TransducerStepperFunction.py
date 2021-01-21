@@ -19,8 +19,6 @@ def movescanner(radius, degrees, distance, outpins, direction):
     # steps = round(move_angle/step_angle)
     # cycles = steps/8
 
-    # note that the smallest angle we can resolve is 0.9deg or 0.015708rads, this limits our distance precision
-    # smaller wheel radius will be best for resolving smaller distances / come closer to target specified distances
     counter = 0
     while counter < distance:  # moves wheels until another step would exceed desired distance
         for step in range(8):  # looping through half steps
@@ -34,3 +32,4 @@ def movescanner(radius, degrees, distance, outpins, direction):
                 break
     go = 1
     return go
+

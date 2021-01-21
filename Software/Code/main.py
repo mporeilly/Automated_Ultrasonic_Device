@@ -47,18 +47,6 @@ print(data2.percentage)
 # pip install RPi.GPIO
 # import RPi.GPIO as GPIO   ;not sure if this works
 
-# for now assume nema17 dual shaft. Half stepping for more precision (0.9degrees/step)
-
-# Assign gpio pins as outputs
-wheelOutpins = [1, 2, 3, 4]  # list of the 4 gpio pins that will be used as outputs for drive motor
-scannerOutpins = [5, 6, 7, 8]  # list of pins for scanner motor (don't know the actual pin numbers yet)
-
-for pin in wheelOutpins:  # assigning pins as outputs for drive motor, setting them as low for now
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, 0)
-for pin in scannerOutpins:  # assigning pins as outputs for scanner motor, setting them as low for now
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, 0)
 
 radius = 1  # temporary wheel radius
 belt = 1  # temporary belt radius
@@ -67,22 +55,22 @@ degrees = 1.8  # degrees per step (for full stepping, half stepping is utilized 
 distance = 0.75  # desired forward distance per scan, in inches (could make this a user input with GUI)
 count = 0  # counts number of scans, used for while-loop exit condition
 
-from WheelStepperFunction import movewheels  # importing created functions from external files
-from TransducerStepperFunction import movescanner
+from WheelStepperFunction2 import movewheels  # importing created functions from external files
+from TransducerStepperFunction2 import movescanner
 
 go = 1
 direction = "forward"
 
 # forward scan loop
-while count < ((12/distance)+1):  # (12 inches of grid to scan / distance per scan = number of scans) +1 scan at start
+while count < ((scanPath/distance)+1):  # (inches of grid to scan / distance per scan = number of scans) +1 at start
     if go == 1:
         go = 0
-        go = movescanner(belt, degrees, scanPath, scannerOutpins, direction)
+        go = movescanner(belt, degrees, scanPath, direction)
         count += 1
     if go == 1:
         go = 0
         direction = "forward"
-        go = movewheels(radius, degrees, distance, wheelOutpins, direction)
+        go = movewheels(radius, degrees, distance, direction)
 
         if count % 2 != 0:
             direction = "reverse"
@@ -91,7 +79,7 @@ while count < ((12/distance)+1):  # (12 inches of grid to scan / distance per sc
 
 go = 1
 direction = "reverse"
-
+# Implement/verify reverse to origin after forward scan is working
 # Reverse scan loop
 while count < (
         (12 / distance) + 1):  # (12 inches of grid to scan / distance per scan = number of scans) +1 scan at start
