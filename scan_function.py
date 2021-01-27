@@ -7,8 +7,13 @@ def scan_func(width):# , length, thick_max, thick_min, unit ):
     distance = 0.75  # desired forward distance per scan, in inches (could make this a user input with GUI)
     count = 0  # counts number of scans, used for while-loop exit condition
 
-    from WheelStepperFunction2 import movewheels  # importing created functions from external files
-    from TransducerStepperFunction2 import movescanner
+    from WheelStepperFunction import movewheels  # importing created functions from external files
+    from TransducerStepperFunction import movescanner
+
+    # linear interpolation to get the correct thickness from the voltage collected
+    def interpolation_func(voltage, gate_start, gate_width):
+        thickness = (((voltage*(gate_start+gate_width)-gate_start))/(1))+gate_start
+        return thickness
 
     go = 1
     direction = "forward"
