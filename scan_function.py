@@ -1,5 +1,8 @@
 def scan_func(width):# , length, thick_max, thick_min, unit ):
 
+
+
+
     radius = 1  # temporary wheel radius
     belt = 1  # temporary belt radius
     scanPath = 12  # length of scanner path
@@ -19,7 +22,7 @@ def scan_func(width):# , length, thick_max, thick_min, unit ):
     direction = "forward"
 
     # forward scan loop
-    while count < ((scanPath/distance)+1):  # (inches of grid to scan / distance per scan = number of scans) +1 at start
+    while count < ((scanPath/distance)+1):  # (inches of grid to scan / distance per scan = number of scans) +1 at start    left right
         if go == 1:
             go = 0
             go = movescanner(belt, degrees, scanPath, direction)
@@ -27,7 +30,7 @@ def scan_func(width):# , length, thick_max, thick_min, unit ):
         if go == 1:
             go = 0
             direction = "forward"
-            go = movewheels(radius, degrees, distance, direction)
+            go = movewheels(radius, degrees, distance, direction)               #forward back
 
             if count % 2 != 0:
                 direction = "reverse"

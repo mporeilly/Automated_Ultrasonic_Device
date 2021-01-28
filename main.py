@@ -4,7 +4,7 @@ from scan_function import scan_func
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
-root.geometry('370x200')                                # window size 
+root.geometry('370x150')                                # window size 
 
 
 # units indicator radio buttons
@@ -14,20 +14,15 @@ width_textbox = tk.StringVar()
 length_textbox = tk.StringVar()
 
 
-#print(milimeter_selection.get())                        # the value starts off at 0 this will be used for the selection statements to make sure the user inputs correct data
-# def clicked(value): 
-#     if value == 1:                                      # value of 1 indicates inches is selected
-#         print(value,'inches')      
-#     else:
-#         print(value,'mm')
+# value of 1 indicates inches is selected
 
-radio_mm = tk.Radiobutton(root, text=' mm ', variable=milimeter_selection, value=2) #, command=lambda: clicked(milimeter_selection.get()))
+radio_mm = tk.Radiobutton(root, text=' mm ', variable=milimeter_selection, value=2)
 radio_mm.grid(row=3, column=1, sticky=tk.W)
-radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=1) #, command=lambda: clicked(milimeter_selection.get()))
+radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=1) 
 radio_in.grid(row=4, column=1, sticky=tk.W)
 
 # voltage selector 
-radio_mm = tk.Radiobutton(root, text=' 0 to 1V ', variable=voltage_selection, value=2) #, command=lambda: clicked(milimeter_selection.get()))
+radio_mm = tk.Radiobutton(root, text=' 0 to 1V ', variable=voltage_selection, value=2) 
 radio_mm.grid(row=3, column=3, sticky=tk.W)
 
 myLabel = tk.Label(root, text='Voltage Range:')        # labels the unit selection area of the GUI
@@ -47,16 +42,16 @@ length_textbox.grid(row=6, column=1, sticky=tk.W)
 
 # selection statements which allow the top buttons to be activated
 
-thick_min_label = tk.Label(root, text='Gate Start:')           # this is for tracking the 
-thick_min_label.grid(row=7, column=0)
-thick_max_label = tk.Label(root, text='Gate Width:')  # span of the thickness from the start
-thick_max_label.grid(row=8, column=0)
+gate_start_label = tk.Label(root, text='Gate Start:')           # this is for tracking the 
+gate_start_label.grid(row=5, column=2)
+gate_width_label = tk.Label(root, text='Gate Width:')  # span of the thickness from the start
+gate_width_label.grid(row=6, column=2)
 
-thick_min_textbox = tk.Entry(root, width=7)
-thick_min_textbox.grid(row=7, column=1, sticky=tk.W)
+gate_start_textbox = tk.Entry(root, width=7)
+gate_start_textbox.grid(row=5, column=3, sticky=tk.W)
 
-thick_max_textbox = tk.Entry(root, width=7)
-thick_max_textbox.grid(row=8, column=1, sticky=tk.W)
+gate_width_textbox = tk.Entry(root, width=7)
+gate_width_textbox.grid(row=6, column=3, sticky=tk.W)
 
 # main top buttons 
 
@@ -72,7 +67,7 @@ savefile_button.grid(row=1, column=1)
 runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_func(width_textbox.get()) )
 runscan_button.grid(row=1, column=2)
 
-stopscan_button = tk.Button(root, text='Stop Scan')
+stopscan_button = tk.Button(root, text='Stop Scan', bg='red')
 stopscan_button.grid(row=1, column=3)
 
 root.mainloop() # starts the pop up window
