@@ -1,8 +1,7 @@
-def scan_func(width):# , length, thick_max, thick_min, unit ):
-
-
-
-
+def scan_func(width):# , length, thick_max, thick_min, unit )
+ 
+    from WheelStepperFunction import movewheels  # importing created functions from external files
+    from TransducerStepperFunction import movescanner
     radius = 1  # temporary wheel radius
     belt = 1  # temporary belt radius
     scanPath = 12  # length of scanner path
@@ -10,8 +9,7 @@ def scan_func(width):# , length, thick_max, thick_min, unit ):
     distance = 0.75  # desired forward distance per scan, in inches (could make this a user input with GUI)
     count = 0  # counts number of scans, used for while-loop exit condition
 
-    from WheelStepperFunction import movewheels  # importing created functions from external files
-    from TransducerStepperFunction import movescanner
+
 
     # linear interpolation to get the correct thickness from the voltage collected
     def interpolation_func(voltage, gate_start, gate_width):

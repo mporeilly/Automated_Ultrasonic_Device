@@ -1,6 +1,6 @@
 import tkinter as tk                                    # import the package for the window 
 #import csv_function_file                                # import the custom function for saving to csv file 
-from scan_function import scan_func    
+from scan_controller import scan_control    
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
@@ -10,15 +10,16 @@ root.geometry('370x150')                                # window size
 # units indicator radio buttons
 milimeter_selection = tk.IntVar()                       # creation of the unit indicator starts at 0 with no selection
 voltage_selection = tk.IntVar()
+operation_flag = 1                                      # this flag means the machine is ready to run
 width_textbox = tk.StringVar()
 length_textbox = tk.StringVar()
 
 
 # value of 1 indicates inches is selected
 
-radio_mm = tk.Radiobutton(root, text=' mm ', variable=milimeter_selection, value=2)
+radio_mm = tk.Radiobutton(root, text=' mm ', variable=milimeter_selection, value=1)
 radio_mm.grid(row=3, column=1, sticky=tk.W)
-radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=1) 
+radio_in = tk.Radiobutton(root, text=' in ', variable=milimeter_selection, value=2) 
 radio_in.grid(row=4, column=1, sticky=tk.W)
 
 # voltage selector 
@@ -64,11 +65,11 @@ openfile_button.grid(row=1, column=0)
 savefile_button = tk.Button(root, text='Save File')
 savefile_button.grid(row=1, column=1)
 
-runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_func(width_textbox.get()) )
+runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_control(width_textbox.get(), length_textbox.get(), gate_start_textbox.get(), gate_width_textbox.get(), milimeter_selection.get(), operation_flag))
 runscan_button.grid(row=1, column=2)
 
-stopscan_button = tk.Button(root, text='Stop Scan', bg='red')
-stopscan_button.grid(row=1, column=3)
+# stopscan_button = tk.Button(root, text='Stop Scan', bg='red')
+# stopscan_button.grid(row=1, column=3)
 
 root.mainloop() # starts the pop up window
 
