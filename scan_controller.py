@@ -9,7 +9,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
 
     if unit != 1 and unit != 2:
         return
-        
+
     if unit == 2:
         radius = 1.5  # wheel radius in inches
         belt = 1  # temporary belt radius in inches
@@ -44,7 +44,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
         return voltage
 
 
-    print('op flag value ' + operation_flag)
+    print('op flag value ' + str(operation_flag))
     while operation_flag == 1: # this is for the emergency stop to be wired to
 
         length_impulses = measurement_to_impulse(length, unit) / stepincrement # number of forward increments in grid
