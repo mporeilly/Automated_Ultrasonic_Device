@@ -54,18 +54,14 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
         ydirection = 1  # starting direction of wheels set to forward
         ximpulses = 0 # variable for counting impulses to determine direction (odd impulses = left->right, vise versa)
         yimpulses = 0 # variable for counting impulses to determine direction (odd impulses = forward, vise versa)
-        print('in while loop')
+        print(range(int(length_impulses)))
         for y_movement in range(int(length_impulses)):
             time.sleep(1)
+            print('y move '+ str(y_movement))
             movewheels(radius, degrees, yincrement, ydirection)
             print('in first for loop')
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
                 ydirection = 0
-            # if gpiopins is high:
-            #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
-            #voltage = voltage_collector()
-            #thickness = interpolation_func(voltage, gate_start, gate_width)
-            # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
 
             if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
                 xdirection = 0
@@ -74,7 +70,16 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
             print(y_movement)
 
             for x_movement in range(int(width_impulses)):
+                print('y move '+ str(x_movement))
                 yimpulses +=1
+
+
+
+                # if gpiopins is high:
+                #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
+                #voltage = voltage_collector()
+                #thickness = interpolation_func(voltage, gate_start, gate_width)
+                # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
                 print('in second for loop')
                 movescanner(belt, degrees, width_impulses, xdirection)
                 ximpulses +=1
