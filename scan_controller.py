@@ -3,6 +3,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
     print(unit)
     # if statement to make sure the values fit within the
     import math
+    import time
     from WheelStepperFunction import movewheels  # importing created functions from external files
     from TransducerStepperFunction import movescanner
 
@@ -55,6 +56,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
         yimpulses = 0 # variable for counting impulses to determine direction (odd impulses = forward, vise versa)
         print('in while loop')
         for y_movement in range(int(length_impulses)):
+            time.sleep(1)
             movewheels(radius, degrees, yincrement, ydirection)
             print('in first for loop')
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
