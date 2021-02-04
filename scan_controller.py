@@ -5,6 +5,11 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
     import math
     from WheelStepperFunction import movewheels  # importing created functions from external files
     from TransducerStepperFunction import movescanner
+
+
+    if unit != 1 and unit != 2:
+        return
+        
     if unit == 2:
         radius = 1.5  # wheel radius in inches
         belt = 1  # temporary belt radius in inches
@@ -17,9 +22,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
     scanPath = width  # length of scanner path
     degrees = 1.8/2  # degrees per step (for full stepping, half stepping is utilized in the move functions)
     stepincrement = int(yincrement / (degrees * ((2 * math.pi) / 360) * radius))  # number of steps in y increment
-
-    if unit != 1 or unit != 2:
-        return
 
     # linear interpolation to get the correct thickness from the voltage collected
     def interpolation_func(voltage, gate_start, gate_width):
