@@ -51,9 +51,10 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
         ydirection = 1  # starting direction of wheels set to forward
         ximpulses = 0 # variable for counting impulses to determine direction (odd impulses = left->right, vise versa)
         yimpulses = 0 # variable for counting impulses to determine direction (odd impulses = forward, vise versa)
-
+        print('in while loop')
         for y_movement in length_impulses:
             movewheels(radius, degrees, yincrement, ydirection)
+            print('in first for loop')
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
                 ydirection = 0
             # if gpiopins is high:
@@ -70,6 +71,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
 
             for x_movement in width_impulses:
                 yimpulses +=1
+                print('in second for loop')
                 movescanner(belt, degrees, width_impulses, xdirection)
                 ximpulses +=1
                 print(x_movement)
