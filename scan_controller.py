@@ -71,7 +71,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
 
             for x_movement in range(int(width_impulses)):
                 print('y move '+ str(x_movement))
-                yimpulses +=1
+                
 
 
 
@@ -82,7 +82,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
                 print('in second for loop')
                 movescanner(belt, degrees, width_impulses, xdirection)
-                ximpulses +=1
+                
                 print(x_movement)
 
 
