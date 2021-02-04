@@ -68,8 +68,10 @@ savefile_button.grid(row=1, column=1)
 runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_control(width_textbox.get(), length_textbox.get(), gate_start_textbox.get(), gate_width_textbox.get(), milimeter_selection.get(), operation_flag))
 runscan_button.grid(row=1, column=2)
 
-# stopscan_button = tk.Button(root, text='Stop Scan', bg='red')
-# stopscan_button.grid(row=1, column=3)
+
+# work on pop up to tell the operator to reset the scanner at the origin of the scan
+resetscan_button = tk.Button(root, text='Reset Scan', bg='orange')
+resetscan_button.grid(row=1, column=3)
 
 root.mainloop() # starts the pop up window
 
