@@ -1,5 +1,6 @@
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
     print('enter control func')
+    print(unit)
     # if statement to make sure the values fit within the
     import math
     from WheelStepperFunction import movewheels  # importing created functions from external files
