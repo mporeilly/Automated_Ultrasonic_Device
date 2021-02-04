@@ -31,7 +31,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
 
     def measurement_to_impulse(length,unit):
         #returns the number of impulses required to drive the
-        impulse_number = int(length / (degrees * ((2 * math.pi) / 360) * radius)) # steps per length
+        impulse_number = int(float(length) / (degrees * ((2 * math.pi) / 360) * radius)) # steps per length
         return impulse_number
 
     def voltage_collector():
