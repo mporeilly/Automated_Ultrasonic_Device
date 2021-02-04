@@ -61,8 +61,8 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
                 ydirection = 0
             # if gpiopins is high:
             #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
-            voltage = voltage_collector()
-            thickness = interpolation_func(voltage, gate_start, gate_width)
+            #voltage = voltage_collector()
+            #thickness = interpolation_func(voltage, gate_start, gate_width)
             # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
 
             if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
