@@ -67,11 +67,11 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
                 xdirection = 1
             print(y_movement)
 
-           for x_movement in width_impulses:
-               yimpulses +=1
-               movescanner(belt, degrees, width_impulses, xdirection)
-               ximpulses +=1
-               print(x_movement)
+            for x_movement in width_impulses:
+                yimpulses +=1
+                movescanner(belt, degrees, width_impulses, xdirection)
+                ximpulses +=1
+                print(x_movement)
 
 
 
