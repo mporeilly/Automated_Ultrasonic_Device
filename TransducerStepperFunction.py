@@ -3,16 +3,18 @@ def movescanner(radius, degrees, distance, direction):
     import time
     import RPi.GPIO as GPIO
 
-    if direction == "forward":
-        direction = int(1)  # clockwise/forward (direction pin high)
-
-    else:
-        direction = int(0)  # clockwise/reverse (direction pin low)
+    # if direction == "forward":
+    #     direction = int(1)  # clockwise/forward (direction pin high)
+    #
+    # else:
+    #     direction = int(0)  # counterclockwise/reverse (direction pin low)
 
     step_angle = degrees/2
     m_pins = (10, 12, 32)  # M-pins of driver set to GPIO pins 10 12 and 32 on pi
-    step = 23  # step pin of driver set to GPIO 23 on pi
-    dir = 24  # dir pin of driver set to GPIO 24 on pi
+    # step = 23  # step pin of driver set to GPIO 23 on pi
+    # dir = 24  # dir pin of driver set to GPIO 24 on pi
+    step = 21  # step pin of driver set to GPIO 23 on pi
+    dir = 20
     half = (1, 0, 0)  # sequence of m-pins activation for half stepping (M0 high, M1 and M2 low)
 
     # Note that may be able to just pull the M-pins high and low by connecting M0 to 3.3v rail, M1 and M2 to ground
