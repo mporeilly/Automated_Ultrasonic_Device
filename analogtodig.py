@@ -16,6 +16,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(17,  GPIO.OUT)
 
 while True:
-  print('Raw ADC Value: ', channel.value)
+  #print('Raw ADC Value: ', channel.value)
   print('ADC Voltage: ' + str(channel.voltage) + 'V')
   time.sleep(0.5)

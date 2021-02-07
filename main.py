@@ -4,7 +4,7 @@ from scan_controller import scan_control
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
-root.geometry('370x150')                                # window size 
+root.geometry('390x150')                                # window size 
 
 
 # units indicator radio buttons
@@ -13,6 +13,7 @@ voltage_selection = tk.IntVar()
 operation_flag = 1                                      # this flag means the machine is ready to run
 width_textbox = tk.StringVar()
 length_textbox = tk.StringVar()
+scan_name_textbox = tk.StringVar()                              # allows the user to define scan values
 
 
 # value of 1 indicates inches is selected
@@ -32,14 +33,21 @@ myLabel.grid(row=3, column=2)
 
 width_label = tk.Label(root, text='Scan Width:')
 width_label.grid(row=5, column=0)
-length_label = tk.Label(root, text='Scan length:')
-length_label.grid(row=6, column=0)
 
 width_textbox = tk.Entry(root, width=7)
 width_textbox.grid(row=5, column=1, sticky=tk.W)
 
+length_label = tk.Label(root, text='Scan length:')
+length_label.grid(row=6, column=0)
+
 length_textbox = tk.Entry(root, width=7)
 length_textbox.grid(row=6, column=1, sticky=tk.W)
+
+scan_name_label = tk.Label(root, text='Scan Name:')
+scan_name_label.grid(row=4, column=2)
+
+scan_name_textbox = tk.Entry(root, width=7)
+scan_name_textbox.grid(row=4, column=3, sticky=tk.W)
 
 # selection statements which allow the top buttons to be activated
 
@@ -54,6 +62,7 @@ gate_start_textbox.grid(row=5, column=3, sticky=tk.W)
 gate_width_textbox = tk.Entry(root, width=7)
 gate_width_textbox.grid(row=6, column=3, sticky=tk.W)
 
+
 # main top buttons 
 
 myLabel = tk.Label(root, text='Unit Selection:')        # labels the unit selection area of the GUI
@@ -65,7 +74,7 @@ openfile_button.grid(row=1, column=0)
 savefile_button = tk.Button(root, text='Save File')
 savefile_button.grid(row=1, column=1)
 
-runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_control(width_textbox.get(), length_textbox.get(), gate_start_textbox.get(), gate_width_textbox.get(), milimeter_selection.get(), operation_flag))
+runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_control(width_textbox.get(), length_textbox.get(), gate_start_textbox.get(), gate_width_textbox.get(), milimeter_selection.get(), operation_flag, scan_name_textbox.get()))
 runscan_button.grid(row=1, column=2)
 
 

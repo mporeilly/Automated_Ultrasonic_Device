@@ -1,4 +1,4 @@
-def scan_control(width, length, gate_start, gate_width, unit, operation_flag):
+def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     print('enter control func')
     print(unit)
     # if statement to make sure the values fit within the
