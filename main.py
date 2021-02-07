@@ -1,6 +1,11 @@
 import tkinter as tk                                    # import the package for the window 
 #import csv_function_file                                # import the custom function for saving to csv file 
 from scan_controller import scan_control    
+import pandas
+from tkinter.filedialog import askopenfilename
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
@@ -14,6 +19,40 @@ operation_flag = 1                                      # this flag means the ma
 width_textbox = tk.StringVar()
 length_textbox = tk.StringVar()
 scan_name_textbox = tk.StringVar()                              # allows the user to define scan values
+
+def plotting_of_open_file():                           # this function is used to plot already saved data, historical review 
+    file_name = askopenfilename()
+    df = pandas.read_csv(file_name)
+    print(df)
+
+    #############
+
+    # This Section Needs to be updated to pull the proper data elements from a saved csv fill produced by the scan_controller.py function
+    # look to testplotter.py for more info
+
+    ############
+
+
+    # # generate 2 2d grids for the x & y bounds
+
+
+    # z = z[:-1, :-1]
+    #z_min, z_max = -np.abs(z).max(), np.abs(z).max()
+
+    fig, ax = plt.subplots()
+
+    c = ax.pcolormesh(df, cmap='RdYlGn', vmin=0, vmax=0.25)             # update this to reflect the ranges of the thickness captured
+    ax.set_title('Data Collected at Scan Area A-1')
+    # # set the limits of the plot to the limits of the data
+    #ax.axis([x.min(), x.max(), y.min(), y.max()])
+
+    fig.colorbar(c, ax=ax)
+    ax.set_xlabel('Transducter Displacement (unit)')
+    ax.set_ylabel('Machine Displacement (unit)')
+    plt.show()
+
+
+
 
 
 # value of 1 indicates inches is selected
@@ -68,7 +107,7 @@ gate_width_textbox.grid(row=6, column=3, sticky=tk.W)
 myLabel = tk.Label(root, text='Unit Selection:')        # labels the unit selection area of the GUI
 myLabel.grid(row=3, column=0)
 
-openfile_button = tk.Button(root, text='Open File')     # creates the button
+openfile_button = tk.Button(root, text='Open File',command=lambda:plotting_of_open_file())     # creates the button
 openfile_button.grid(row=1, column=0)
 
 savefile_button = tk.Button(root, text='Save File')
