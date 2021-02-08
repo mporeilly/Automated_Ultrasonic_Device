@@ -2,10 +2,7 @@
 # chmod 775 the setup.sh file 
 # run   sudo ./setup.sh
 
-apt install python3 -y      # installs python
-apt install python3-pip -y  # installs pip which is used to install packages
-apt install python3-tk -y   # this install tkinter package 
-pip3 install matplotlib
-pip3 install pandas
-pip3 install numpy
-pip3 install adafruit-circuitpython-mcp3xxx
+python3 -m venv capstone_venv       #sets up virtual enviornment
+source capstone_venv/bin/active
+pip install -r requirements.txt
+python main.py

@@ -7,5 +7,5 @@ The files within this repository contain software used to control an automated U
 2. $ Navigate to the folder in the terminal application
 3. $ Edit the permissions of the setup.sh file by typing "chmod 775 setup.sh"
 4. $ Run the setup script by typing "sudo ./setup.sh"
-5. $ To run the application by typing "python3 main.py"
+5. $ To run the application by typing "python main.py"
 '''
