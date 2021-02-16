@@ -92,8 +92,9 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             if operation_flag == 0:
                 print('operation if statement hit in wheel loop')
                 break
-            movewheels(radius, degrees, yincrement, ydirection)
                 print(x_movement)
+            movewheels(radius, degrees, yincrement, ydirection)
+                
                 
             
                 
