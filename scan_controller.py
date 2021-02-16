@@ -60,30 +60,29 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     while operation_flag == 1: # this is for the emergency stop to be wired to
 
         
-        for y_movement in range(int(length_impulses)-1):
-            #time.sleep(1)
-            print('y move '+ str(y_movement))
+        for y_movement in range(int(length_impulses)+1):
+            time.sleep(1)
             
-            
-            print(range(int(length_impulses)-1))
+            if y_movement>0:
+                movewheels(radius, degrees, yincrement, ydirection)
+
+                print('y move '+ str(y_movement))
+
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
-                ydirection = 0
+                 ydirection = 0
 
             if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
-                xdirection = 0
+                 xdirection = 0
             else:
-                xdirection = 1
+                 xdirection = 1
 
             for x_movement in range(int(width_impulses)):
-                print(' trans loop max '+ str(int(length_impulses)))
+            
                 movescanner(belt, degrees, width_impulses, xdirection)
-                print(str(y_movement) + ' is y move and length_impulses is ' + str(int(length_impulses))) 
-                if y_movement >= (int(length_impulses)-1):
-                    print('the opertaion flag was hit in trans loop')
-                    operation_flag = 0
-                    break
+                print(str(y_movement) + ' is y move and length_impulses is ' + str(x_movement)) 
 
-                print('x move '+ str(x_movement))
+ 
+                time.sleep(0.05)
                 
                 # if gpiopins is high:
                 #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
@@ -92,12 +91,10 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
 
                 
-             
-            if operation_flag == 0:
-                print('operation if statement hit in wheel loop')
-                break
-                print(x_movement)
-            movewheels(radius, degrees, yincrement, ydirection)
+            if y_movement == max(range(int(length_impulses)+1)):
+                print('scan done')
+                operation_flag = 3
+
                 
                 
             
