@@ -87,8 +87,9 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 print(x_movement)
                 
             if y_movement >= int(length_impulses):
-                operation_flag = 0
                 print('the opertaion flag was hit')
+                operation_flag = 0
+                
                 
 
 
