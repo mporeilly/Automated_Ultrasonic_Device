@@ -87,7 +87,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 movescanner(belt, degrees, width_impulses, xdirection)
                 
                 print(x_movement)
-                time.sleep(1)
+                
         if y_movement >= int(length_impulses):
             operation_flag = 0
 
