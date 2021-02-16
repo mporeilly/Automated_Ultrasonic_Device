@@ -74,7 +74,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 xdirection = 1
 
             for x_movement in range(int(width_impulses)):
-                print(' trans loop max '+ int(length_impulses))
+                print(' trans loop max '+ str(int(length_impulses)))
                 if y_movement >= int(length_impulses):
                     print('the opertaion flag was hit')
                     operation_flag = 0
