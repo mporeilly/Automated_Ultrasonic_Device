@@ -58,12 +58,11 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     while operation_flag == 1: # this is for the emergency stop to be wired to
 
         
-        for y_movement in range(int(length_impulses)):
+        for y_movement in range(int(length_impulses)-1):
             #time.sleep(1)
             print('y move '+ str(y_movement))
             
             
-
             print('in first for loop')
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
                 ydirection = 0
@@ -75,7 +74,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
             for x_movement in range(int(width_impulses)):
                 print(' trans loop max '+ str(int(length_impulses)))
-                if y_movement >= (int(length_impulses)-1):
+                if y_movement >= (int(length_impulses)):
                     print('the opertaion flag was hit in trans loop')
                     operation_flag = 0
                     break
@@ -89,6 +88,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
                 print('in transducer loop')
                 movescanner(belt, degrees, width_impulses, xdirection)
+             
             if operation_flag == 0:
                 print('operation if statement hit in wheel loop')
                 break
