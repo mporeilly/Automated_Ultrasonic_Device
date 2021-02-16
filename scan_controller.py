@@ -55,22 +55,27 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         ximpulses = 0 # variable for counting impulses to determine direction (odd impulses = left->right, vise versa)
         yimpulses = 0 # variable for counting impulses to determine direction (odd impulses = forward, vise versa)
         print(range(int(length_impulses)))
+        for y_movement in range(int(length_impulses)):
+            #time.sleep(1)
+            print('y move '+ str(y_movement))
+            
+            movewheels(radius, degrees, yincrement, ydirection)
 
-        for x_movement in range(int(width_impulses)):
+            print('in first for loop')
+            if y_movement == length_impulses:  # when length is reached, reverse wheel direction
+                ydirection = 0
 
-            for y_movement in range(int(length_impulses)):
-                time.sleep(1)
-                print('y move '+ str(y_movement))
-                movewheels(radius, degrees, yincrement, ydirection)
-                print('in first for loop')
-                if y_movement == length_impulses:  # when length is reached, reverse wheel direction
-                    ydirection = 0
+            if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
+                xdirection = 0
+            else:
+                xdirection = 1
+            print(y_movement)
 
-                if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
-                    xdirection = 0
-                else:
-                    xdirection = 1
-                print(y_movement)
+            for x_movement in range(int(width_impulses)):
+                print('x move '+ str(x_movement))
+                print(int(length_impulses))
+                print(int(width_impulses))
+
 
                 
                 # if gpiopins is high:
@@ -78,12 +83,12 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 #voltage = voltage_collector()
                 #thickness = interpolation_func(voltage, gate_start, gate_width)
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
-        print('in second for loop')
-        movescanner(belt, degrees, width_impulses, xdirection)
+                print('in second for loop')
+                movescanner(belt, degrees, width_impulses, xdirection)
                 
-        print(x_movement)
-        time.sleep(1)
-        if x_movement == int(width_impulses):
+                print(x_movement)
+                time.sleep(1)
+        if y_movement >= int(length_impulses):
             operation_flag = 0
 
 
