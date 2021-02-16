@@ -45,20 +45,23 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         return voltage
 
 
+    length_impulses = measurement_to_impulse(length, unit) / stepincrement # number of forward increments in grid
+    width_impulses = measurement_to_impulse(length,unit)  # number of steps per probe sweep
+    xdirection = 1  # starting direction of probe set to left->right
+    ydirection = 1  # starting direction of wheels set to forward
+    ximpulses = 0 # variable for counting impulses to determine direction (odd impulses = left->right, vise versa)
+    yimpulses = 0 # variable for counting impulses to determine direction (odd impulses = forward, vise versa)
+    print(range(int(length_impulses)))
+
+
     print('op flag value ' + str(operation_flag))
     while operation_flag == 1: # this is for the emergency stop to be wired to
 
-        length_impulses = measurement_to_impulse(length, unit) / stepincrement # number of forward increments in grid
-        width_impulses = measurement_to_impulse(length,unit)  # number of steps per probe sweep
-        xdirection = 1  # starting direction of probe set to left->right
-        ydirection = 1  # starting direction of wheels set to forward
-        ximpulses = 0 # variable for counting impulses to determine direction (odd impulses = left->right, vise versa)
-        yimpulses = 0 # variable for counting impulses to determine direction (odd impulses = forward, vise versa)
-        print(range(int(length_impulses)))
+        
         for y_movement in range(int(length_impulses)):
             #time.sleep(1)
             print('y move '+ str(y_movement))
-            
+            operation_flag = 69
             movewheels(radius, degrees, yincrement, ydirection)
 
             print('in first for loop')
@@ -73,10 +76,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
             for x_movement in range(int(width_impulses)):
                 print('x move '+ str(x_movement))
-                print(int(length_impulses))
-                print(int(width_impulses))
-
-
                 
                 # if gpiopins is high:
                 #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
@@ -90,5 +89,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 
         if y_movement >= int(length_impulses):
             operation_flag = 0
+            return
 
 
