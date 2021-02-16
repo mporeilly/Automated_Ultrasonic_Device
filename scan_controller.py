@@ -70,8 +70,9 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             print(y_movement)
 
             for x_movement in range(int(width_impulses)):
-                print('y move '+ str(x_movement))
-                
+                print('x move '+ str(x_movement))
+                print((int(length_impulses)))
+                print(int(width_impulses)))
 
 
 

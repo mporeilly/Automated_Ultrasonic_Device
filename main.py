@@ -5,11 +5,12 @@ import pandas
 from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
 import numpy as np
+from analogtodig import scan_values_func
 
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
-root.geometry('390x150')                                # window size 
+root.geometry('424x150')                                # window size 
 
 
 # units indicator radio buttons
@@ -110,7 +111,7 @@ myLabel.grid(row=3, column=0)
 openfile_button = tk.Button(root, text='Open File',command=lambda:plotting_of_open_file())     # creates the button
 openfile_button.grid(row=1, column=0)
 
-savefile_button = tk.Button(root, text='Save File')
+savefile_button = tk.Button(root, text='Test Calibration',command=lambda:scan_values_func())
 savefile_button.grid(row=1, column=1)
 
 runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_control(width_textbox.get(), length_textbox.get(), gate_start_textbox.get(), gate_width_textbox.get(), milimeter_selection.get(), operation_flag, scan_name_textbox.get()))
