@@ -76,7 +76,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             for x_movement in range(int(width_impulses)):
                 print(' trans loop max '+ str(int(length_impulses)))
                 if y_movement >= (int(length_impulses)-1):
-                    print('the opertaion flag was hit')
+                    print('the opertaion flag was hit in trans loop')
                     operation_flag = 0
                     break
 
@@ -90,8 +90,9 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 print('in transducer loop')
                 movescanner(belt, degrees, width_impulses, xdirection)
             if operation_flag == 0:
+                print('operation if statement hit in wheel loop')
                 break
-            
+
                 print(x_movement)
                 
             
