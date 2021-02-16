@@ -75,7 +75,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 print(int(width_impulses))
 
 
-
+                
                 # if gpiopins is high:
                 #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
                 #voltage = voltage_collector()
@@ -85,6 +85,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 movescanner(belt, degrees, width_impulses, xdirection)
                 
                 print(x_movement)
-
+                if x_movement == range(int(width_impulses)):
+                    operation_flag = 0
 
 
