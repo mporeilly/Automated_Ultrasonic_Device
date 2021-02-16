@@ -65,7 +65,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             print('y move '+ str(y_movement))
             
             
-            print('in first for loop')
+            print(range(int(length_impulses)-1))
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
                 ydirection = 0
 
