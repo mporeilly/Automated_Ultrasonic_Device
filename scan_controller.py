@@ -74,6 +74,12 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 xdirection = 1
 
             for x_movement in range(int(width_impulses)):
+                print(' trans loop max '+ int(length_impulses))
+                if y_movement >= int(length_impulses):
+                    print('the opertaion flag was hit')
+                    operation_flag = 0
+                    #break
+
                 print('x move '+ str(x_movement))
                 
                 # if gpiopins is high:
@@ -81,14 +87,12 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 #voltage = voltage_collector()
                 #thickness = interpolation_func(voltage, gate_start, gate_width)
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
-                print('in second for loop')
+                print('in transducer loop')
                 movescanner(belt, degrees, width_impulses, xdirection)
                 
                 print(x_movement)
                 
-            if y_movement >= int(length_impulses):
-                print('the opertaion flag was hit')
-                operation_flag = 0
+            
                 
                 
 
