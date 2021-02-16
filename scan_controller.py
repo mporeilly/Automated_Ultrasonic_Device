@@ -61,7 +61,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
         
         for y_movement in range(int(length_impulses)+1):
-            time.sleep(1)
+            
             
             if y_movement>0:
                 movewheels(radius, degrees, yincrement, ydirection)
@@ -80,9 +80,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             
                 movescanner(belt, degrees, width_impulses, xdirection)
                 print(str(y_movement) + ' is y move and length_impulses is ' + str(x_movement)) 
-
- 
-                time.sleep(0.05)
                 
                 # if gpiopins is high:
                 #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
