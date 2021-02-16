@@ -62,7 +62,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             #time.sleep(1)
             print('y move '+ str(y_movement))
             
-            movewheels(radius, degrees, yincrement, ydirection)
+            
 
             print('in first for loop')
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
@@ -92,7 +92,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             if operation_flag == 0:
                 print('operation if statement hit in wheel loop')
                 break
-
+            movewheels(radius, degrees, yincrement, ydirection)
                 print(x_movement)
                 
             
