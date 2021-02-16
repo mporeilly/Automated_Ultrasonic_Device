@@ -61,7 +61,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         for y_movement in range(int(length_impulses)):
             #time.sleep(1)
             print('y move '+ str(y_movement))
-            operation_flag = 69
+            
             movewheels(radius, degrees, yincrement, ydirection)
 
             print('in first for loop')
@@ -72,7 +72,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 xdirection = 0
             else:
                 xdirection = 1
-            print(y_movement)
 
             for x_movement in range(int(width_impulses)):
                 print('x move '+ str(x_movement))
@@ -87,8 +86,9 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 
                 print(x_movement)
                 
-        if y_movement >= int(length_impulses):
-            operation_flag = 0
-            return
+            if y_movement >= int(length_impulses):
+                operation_flag = 0
+                print('the opertaion flag was hit')
+                
 
 
