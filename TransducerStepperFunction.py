@@ -33,9 +33,9 @@ def movescanner(radius, degrees, distance, direction):
 
     # for steps in range(maximum):  # looping through maximum number of half step pulses
     GPIO.output(step, GPIO.HIGH)  # step pin set high
-    time.sleep(0.01)  # delay between pulses (test different values)
+    time.sleep(0.005)  # delay between pulses (test different values)
     GPIO.output(step, GPIO.LOW)  # step pin set low
-    time.sleep(0.01)  # delay between pulses (test different values)
+    time.sleep(0.005)  # delay between pulses (test different values)
 
     go = 1
     return go  # once wheels have moved desired distance, the return value initiates the next function call in main file
