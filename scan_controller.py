@@ -44,37 +44,31 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
         return voltage
 
-
     length_impulses = measurement_to_impulse(length, unit) / stepincrement # number of forward increments in grid
     width_impulses = measurement_to_impulse(length,unit)  # number of steps per probe sweep
     print(length_impulses)
     print(width_impulses)
     xdirection = 1  # starting direction of probe set to left->right
     ydirection = 1  # starting direction of wheels set to forward
-    ximpulses = 0 # variable for counting impulses to determine direction (odd impulses = left->right, vise versa)
-    yimpulses = 0 # variable for counting impulses to determine direction (odd impulses = forward, vise versa)
     print(range(int(length_impulses)))
-
-
     print('op flag value ' + str(operation_flag))
-    while operation_flag == 1: # this is for the emergency stop to be wired to
 
-        
+    while operation_flag == 1:  # this is for the emergency stop to be wired to
+
         for y_movement in range(int(length_impulses)+1):
-            
-            
-            if y_movement>0:
+
+            if y_movement > 0:
                 movewheels(radius, degrees, yincrement, ydirection)
 
-                print('y move '+ str(y_movement))
+                print('y move ' + str(y_movement))
 
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
-                 ydirection = 0
+                ydirection = 0
 
             if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
-                 xdirection = 0
+                xdirection = 0
             else:
-                 xdirection = 1
+                xdirection = 1
 
             for x_movement in range(int(width_impulses)):
             

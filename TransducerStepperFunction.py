@@ -9,7 +9,7 @@ def movescanner(radius, degrees, distance, direction):
     # else:
     #     direction = int(0)  # counterclockwise/reverse (direction pin low)
 
-    step_angle = degrees/2
+    step_angle = degrees
     m_pins = (10, 12, 32)  # M-pins of driver set to GPIO pins 10 12 and 32 on pi
     # step = 23  # step pin of driver set to GPIO 23 on pi
     # dir = 24  # dir pin of driver set to GPIO 24 on pi

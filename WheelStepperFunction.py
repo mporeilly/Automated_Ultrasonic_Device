@@ -11,7 +11,7 @@ def movewheels(radius, degrees, distance, direction):
 
     # CHANGE PINS STEP AND DIR BACK
 
-    step_angle = degrees/2
+    step_angle = degrees
     m_pins = (25, 8, 7)  # M-pins of driver set to GPIO pins 25 8 and 7 on pi
     step = 23  # step pin of driver set to GPIO 20 on pi
     dir = 24  # dir pin of driver set to GPIO 21 on pi
