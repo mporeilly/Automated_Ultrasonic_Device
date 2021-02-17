@@ -45,7 +45,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         return voltage
 
     length_impulses = measurement_to_impulse(length, unit) / stepincrement # number of forward increments in grid
-    width_impulses = measurement_to_impulse(length,unit)  # number of steps per probe sweep
+    width_impulses = measurement_to_impulse(width,unit)  # number of steps per probe sweep
     print(length_impulses)
     print(width_impulses)
     xdirection = 1  # starting direction of probe set to left->right
