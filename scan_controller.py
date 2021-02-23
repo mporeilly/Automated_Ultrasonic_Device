@@ -1,11 +1,14 @@
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
-    print('enter control func')
-    print(unit)
+    
     # if statement to make sure the values fit within the
+
+
+    
     import math
     import time
     from WheelStepperFunction import movewheels  # importing created functions from external files
     from TransducerStepperFunction import movescanner
+    from analogtodig import scan_voltage
 
 
     if unit != 1 and unit != 2:
@@ -37,11 +40,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
     def voltage_collector():
         print('voltage collector activated')
-
-        ###
-
-        # need to introduce the analogtodigital into this file and the associated imports
-
+        voltage = scan_voltage()
         return voltage
 
     length_impulses = measurement_to_impulse(length, unit) / stepincrement # number of forward increments in grid
@@ -73,7 +72,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             for x_movement in range(int(width_impulses)):
             
                 movescanner(belt, degrees, width_impulses, xdirection)
-                print(str(y_movement) + ' is y move and length_impulses is ' + str(x_movement)) 
+                print(str(y_movement) + ' is y move and width_impulses is ' + str(x_movement)) 
                 
                 # if gpiopins is high:
                 #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
