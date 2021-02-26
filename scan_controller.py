@@ -2,13 +2,24 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     
     # if statement to make sure the values fit within the
 
-
-    
     import math
     import time
     from WheelStepperFunction import movewheels  # importing created functions from external files
     from TransducerStepperFunction import movescanner
     from analogtodig import scan_voltage
+
+    value_matrix = [] # initalizing the array that will hold the DataPoint values
+
+    class DataPoint:                                                        # defining class for data collected
+        def __init__(self, scan_file_name, gate_start_value, gate_width_value, x_coordinate, y_coordinate, voltage_data, measurement_thickness, units):        # defining objects for the class
+            self.scan_file_name = scan_file_name
+            self.voltage_data = voltage_data
+            self.gate_start_value = gate_start_value
+            self.gate_width_value = gate_width_value
+            self.measurement_thickness = measurement_thickness
+            self.x_coordinate = x_coordinate
+            self.y_coordinate = y_coordinate
+            self.units = self.units
 
 
     if unit != 1 and unit != 2:
@@ -18,10 +29,13 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         radius = 1.5  # wheel radius in inches
         belt = 1  # temporary belt radius in inches
         yincrement = 0.75  # y increment in inches
+        unit_text = 'inches'
+
     if unit == 1:
         radius = 38.1  # wheel radius in mm
         belt = 25.4  # temporary belt radius in mm
         yincrement = 19.05  # y increment in mm
+        unit_text = 'mm'
 
     scanPath = width  # length of scanner path
     degrees = 1.8/2  # degrees per step (for full stepping, half stepping is utilized in the move functions)
@@ -38,10 +52,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         impulse_number = int(float(length) / (degrees * ((2 * math.pi) / 360) * radius)) # steps per length
         return impulse_number
 
-    def voltage_collector():
-        print('voltage collector activated')
-        voltage = scan_voltage()
-        return voltage
+
 
     length_impulses = measurement_to_impulse(length, unit) / stepincrement # number of forward increments in grid
     width_impulses = measurement_to_impulse(width,unit)  # number of steps per probe sweep
@@ -76,9 +87,10 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 
                 # if gpiopins is high:
                 #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
-                #voltage = voltage_collector()
-                #thickness = interpolation_func(voltage, gate_start, gate_width)
+                voltage = scan_voltage()
+                thickness = interpolation_func(voltage, gate_start, gate_width)
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
+                value_matrix.append(DataPoint(scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text))
 
                 
             if y_movement == max(range(int(length_impulses)+1)):

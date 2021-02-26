@@ -6,6 +6,8 @@ from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
 import numpy as np
 from analogtodig import scan_values_func
+import tkinter.messagebox as tkmb
+from analogtodig import scan_voltage
 
 
 root = tk.Tk()                                          # root is the window similar to index.html
@@ -43,7 +45,7 @@ def plotting_of_open_file():                           # this function is used t
     fig, ax = plt.subplots()
 
     c = ax.pcolormesh(df, cmap='RdYlGn', vmin=0, vmax=0.25)             # update this to reflect the ranges of the thickness captured
-    ax.set_title('Data Collected at Scan Area A-1')
+    ax.set_title('Data Collected at Scan Area ' + )
     # # set the limits of the plot to the limits of the data
     #ax.axis([x.min(), x.max(), y.min(), y.max()])
 
@@ -53,7 +55,9 @@ def plotting_of_open_file():                           # this function is used t
     plt.show()
 
 
-
+def scan_values_func():
+    while True:
+        tkmb.showinfo("Current Voltage Reading", scan_voltage)
 
 
 # value of 1 indicates inches is selected
