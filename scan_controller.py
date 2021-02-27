@@ -1,5 +1,4 @@
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
-    
     # if statement to make sure the values fit within the
 
     import math
@@ -20,7 +19,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             self.x_coordinate = x_coordinate
             self.y_coordinate = y_coordinate
             self.units = self.units
-
 
     if unit != 1 and unit != 2:
         return
@@ -46,13 +44,10 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         thickness = (((voltage*(gate_start+gate_width)-gate_start))/(1))+gate_start
         return thickness
 
-
     def measurement_to_impulse(length,unit):
         #returns the number of impulses required to drive the
         impulse_number = int(float(length) / (degrees * ((2 * math.pi) / 360) * radius)) # steps per length
         return impulse_number
-
-
 
     length_impulses = measurement_to_impulse(length, unit) / stepincrement # number of forward increments in grid
     width_impulses = measurement_to_impulse(width,unit)  # number of steps per probe sweep
@@ -91,16 +86,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 thickness = interpolation_func(voltage, gate_start, gate_width)
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
                 value_matrix.append(DataPoint(scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text))
-
-                
+      
             if y_movement == max(range(int(length_impulses)+1)):
                 print('scan done')
                 operation_flag = 3
-
-                
-                
-            
-                
-                
-
-

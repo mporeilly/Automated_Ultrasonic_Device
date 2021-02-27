@@ -1,19 +1,16 @@
 import tkinter as tk                                    # import the package for the window 
 #import csv_function_file                                # import the custom function for saving to csv file 
 from scan_controller import scan_control    
-import pandas
 from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
 import numpy as np
-from analogtodig import scan_values_func
 import tkinter.messagebox as tkmb
 from analogtodig import scan_voltage
-
+import csv
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
 root.geometry('424x150')                                # window size 
-
 
 # units indicator radio buttons
 milimeter_selection = tk.IntVar()                       # creation of the unit indicator starts at 0 with no selection
@@ -24,35 +21,40 @@ length_textbox = tk.StringVar()
 scan_name_textbox = tk.StringVar()                              # allows the user to define scan values
 
 def plotting_of_open_file():                           # this function is used to plot already saved data, historical review 
+    x_coor = []
+    y_coor = []
+    thickness = []
     file_name = askopenfilename()
-    df = pandas.read_csv(file_name)
-    print(df)
+    with open(file_name) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        index_value = 1
+        for lines in csv_reader:
+            if index_value == 2:
+                saved_scan_name = lines[0]     # used to pull the scan file name
+                unit_from_scan = lines[8]
 
-    #############
+            if index_value > 1:
+                x_coor.append(lines[4])
+                y_coor.append(lines[5])
+                thickness.append(lines[7])
 
-    # This Section Needs to be updated to pull the proper data elements from a saved csv fill produced by the scan_controller.py function
-    # look to testplotter.py for more info
-
-    ############
-
-
-    # # generate 2 2d grids for the x & y bounds
+            index_value = index_value + 1
+        fig, ax = plt.subplots()
 
 
-    # z = z[:-1, :-1]
-    #z_min, z_max = -np.abs(z).max(), np.abs(z).max()
+        X_COOR, Y_COOR = np.meshgrid(x_coor, y_coor)
 
-    fig, ax = plt.subplots()
+        # x_coor = np.array(x_coor)
+        # y_coor = np.array(y_coor)
+        # thickness_values = np.array(list(zip(y_coor,thickness)))
+        # print(type(thickness))
 
-    c = ax.pcolormesh(df, cmap='RdYlGn', vmin=0, vmax=0.25)             # update this to reflect the ranges of the thickness captured
-    ax.set_title('Data Collected at Scan Area ' + )
-    # # set the limits of the plot to the limits of the data
-    #ax.axis([x.min(), x.max(), y.min(), y.max()])
+        #c = ax.contour(data_combined, thickness, cmap='RdYlGn', vmin=0, vmax=0.25)             # update this to reflect the ranges of the thickness captured
+        #c = ax.pcolormesh(x_coor,y_coor,thickness) #, cmap='RdYlGn', vmin=0, vmax=0.25)
 
-    fig.colorbar(c, ax=ax)
-    ax.set_xlabel('Transducter Displacement (unit)')
-    ax.set_ylabel('Machine Displacement (unit)')
-    plt.show()
+        cmap = ax.pcolormesh(X_COOR, Y_COOR, thickness)
+        fig.colorbar(cmap)
+        plt.show()
 
 
 def scan_values_func():

@@ -4,7 +4,7 @@ import csv
 
 import pandas
 df = pandas.read_csv('book2.csv')
-print(df)
+print(type(df))
 # # generate 2 2d grids for the x & y bounds
 # y, x = np.meshgrid(np.linspace(0, 3, 1000), np.linspace(0, 3, 1000))
 
