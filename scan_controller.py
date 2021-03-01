@@ -9,6 +9,14 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
     value_matrix = [] # initalizing the array that will hold the DataPoint values
 
+
+    # zeroing of the transducter 
+    # while True:
+    # move transducter direction 
+    # if gpio pin 17 == HIGH:
+    #   False
+
+
     class DataPoint:                                                        # defining class for data collected
         def __init__(self, scan_file_name, gate_start_value, gate_width_value, x_coordinate, y_coordinate, voltage_data, measurement_thickness, units):        # defining objects for the class
             self.scan_file_name = scan_file_name
@@ -57,6 +65,10 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     ydirection = 1  # starting direction of wheels set to forward
     print(range(int(length_impulses)))
     print('op flag value ' + str(operation_flag))
+
+
+
+
 
     while operation_flag == 1:  # this is for the emergency stop to be wired to
 
