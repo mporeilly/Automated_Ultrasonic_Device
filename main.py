@@ -4,6 +4,7 @@ from scan_controller import scan_control
 from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import tkinter.messagebox as tkmb
 from analogtodig import scan_voltage
 import csv
