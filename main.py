@@ -22,13 +22,12 @@ length_textbox = tk.StringVar()
 scan_name_textbox = tk.StringVar()                              # allows the user to define scan values
 
 def plotting_of_open_file():                           # this function is used to plot already saved data, historical review 
+    
     file_name = askopenfilename()
     with open(file_name) as csv_file:
         df = pd.read_csv(file_name)
 
-        print(df)
         scan = df.scan_area   # df is the variable name and .scan_area is the column header 
-        print(scan)
         X = df.x_coor
         Y = df.y_coor
         Z = df.thickness
@@ -46,6 +45,8 @@ def plotting_of_open_file():                           # this function is used t
         ax.set_zlabel('Material Thickness (' + previous_scan_unit +')')
 
         plt.show()
+        root.destroy()
+        
 
 
 def scan_values_func():
