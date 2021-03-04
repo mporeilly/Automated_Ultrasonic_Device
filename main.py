@@ -22,39 +22,29 @@ length_textbox = tk.StringVar()
 scan_name_textbox = tk.StringVar()                              # allows the user to define scan values
 
 def plotting_of_open_file():                           # this function is used to plot already saved data, historical review 
-    x_coor = []
-    y_coor = []
-    thickness = []
     file_name = askopenfilename()
     with open(file_name) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        index_value = 1
-        for lines in csv_reader:
-            if index_value == 2:
-                saved_scan_name = lines[0]     # used to pull the scan file name
-                unit_from_scan = lines[8]
+        df = pd.read_csv(file_name)
 
-            if index_value > 1:
-                x_coor.append(lines[4])
-                y_coor.append(lines[5])
-                thickness.append(lines[7])
+        print(df)
+        scan = df.scan_area   # df is the variable name and .scan_area is the column header 
+        print(scan)
+        X = df.x_coor
+        Y = df.y_coor
+        Z = df.thickness
 
-            index_value = index_value + 1
-        fig, ax = plt.subplots()
+        previous_scan_unit = df.units[1]
+        previous_scan_name = df.scan_area[1]
 
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')       #     https://stackoverflow.com/questions/51891538/create-a-surface-plot-of-xyz-altitude-data-in-python
+        ax.plot_trisurf(X, Y, Z, cmap='RdYlGn')#, edgecolors='grey', alpha=0.5)
+        ax.scatter(X, Y, Z, c='black')
+        ax.set_title('Data Collected from Scan ' + previous_scan_name)
+        ax.set_xlabel('Transducer Displacement (' + previous_scan_unit +')')
+        ax.set_ylabel('Machine Displacement (' + previous_scan_unit +')')
+        ax.set_zlabel('Material Thickness (' + previous_scan_unit +')')
 
-        X_COOR, Y_COOR = np.meshgrid(x_coor, y_coor)
-
-        # x_coor = np.array(x_coor)
-        # y_coor = np.array(y_coor)
-        # thickness_values = np.array(list(zip(y_coor,thickness)))
-        # print(type(thickness))
-
-        #c = ax.contour(data_combined, thickness, cmap='RdYlGn', vmin=0, vmax=0.25)             # update this to reflect the ranges of the thickness captured
-        #c = ax.pcolormesh(x_coor,y_coor,thickness) #, cmap='RdYlGn', vmin=0, vmax=0.25)
-
-        cmap = ax.pcolormesh(X_COOR, Y_COOR, thickness)
-        fig.colorbar(cmap)
         plt.show()
 
 
