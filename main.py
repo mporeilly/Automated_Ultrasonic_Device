@@ -124,20 +124,3 @@ resetscan_button = tk.Button(root, text='Reset Scan', bg='orange')
 resetscan_button.grid(row=1, column=3)
 
 root.mainloop() # starts the pop up window
-
-# # https://www.youtube.com/watch?v=ZDa-Z5JzLYM&ab_channel=CoreySchafer
-# class DataPoint:                                                        # defining class for data collected
-#     # user selected nominal thickness of plate
-#     # will look to pull from user within the gui
-#     nominal_thickness = 2
-#     units = 'mm'
-
-#     def __init__(self, measurement, x_coordinate, y_coordinate):        # defining objects for the class
-#         self.measurement = measurement
-#         self.x_coordinate = x_coordinate
-#         self.y_coordinate = y_coordinate
-#         self.percentage = self.measurement / self.nominal_thickness * 100  # need to specify significant digits
-#         self.units = self.units
-#         # should add a color to the data point for displaying later
-
-

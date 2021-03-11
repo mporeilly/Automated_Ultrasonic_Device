@@ -4,7 +4,7 @@ from WheelStepperFunction import movewheels  # importing created functions from 
 from TransducerStepperFunction import movescanner
 from analogtodig import scan_voltage
 from csv_function_file import save_csv_file_func
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     # if statement to make sure the values fit within the
