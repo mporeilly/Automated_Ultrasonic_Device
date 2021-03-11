@@ -1,5 +1,8 @@
 *.DS_Store
 *.pyc
-*.csv
+book2.csv
 /venv_capstone
 /venv
+th.py
+Figure_4.png
+testdatasaving.py

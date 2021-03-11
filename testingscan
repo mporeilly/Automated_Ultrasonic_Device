@@ -1,0 +1,11 @@
+scan_area,gate_start,Gate Width,X Coordinate,Y Coordinate,Voltage Reading,Measurement Value,Measurement Units
+testingscan,2,5,5,6,99,66,0
+testingscan,2,5,5,6,99,66,1
+testingscan,2,5,5,6,99,66,2
+testingscan,2,5,5,6,99,66,3
+testingscan,2,5,5,6,99,66,4
+testingscan,2,5,5,6,99,66,5
+testingscan,2,5,5,6,99,66,6
+testingscan,2,5,5,6,99,66,7
+testingscan,2,5,5,6,99,66,8
+testingscan,2,5,5,6,99,66,9

@@ -1,33 +1,34 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import csv
+import pandas as pd
+from tkinter.filedialog import askopenfilename
 
-import pandas
-df = pandas.read_csv('book2.csv')
+# def plotter():
+file_name = askopenfilename()
+df = pd.read_csv(file_name)
+
 print(df)
-# # generate 2 2d grids for the x & y bounds
-# y, x = np.meshgrid(np.linspace(0, 3, 1000), np.linspace(0, 3, 1000))
 
+scan = df.scan_area   # this is where the AttributeError is flagged
+X = df.x_coor
+Y = df.y_coor
+Z = df.thickness
 
-# z = (1 - x / 2. + x ** 5 + (y) ** 3) * np.exp(-x ** 2 - y ** 2)
-# # x and y are bounds, so z should be the value *inside* those bounds.
-# # Therefore, remove the last value from the z array.
+previous_scan_unit = df.units[1]
+previous_scan_name = df.scan_area[1]
+print(previous_scan_name)
 
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')       #     https://stackoverflow.com/questions/51891538/create-a-surface-plot-of-xyz-altitude-data-in-python
+ax.plot_trisurf(X, Y, Z, cmap='RdYlGn')#, edgecolors='grey', alpha=0.5)
+ax.scatter(X, Y, Z, c='black')
+ax.set_title('Data Collected from Scan ' + previous_scan_name)
+ax.set_xlabel('Transducer Displacement (' + previous_scan_unit +')')
+ax.set_ylabel('Machine Displacement (' + previous_scan_unit +')')
+ax.set_zlabel('Material Thickness (' + previous_scan_unit +')')
 
-
-
-# z = z[:-1, :-1]
-# z_min, z_max = -np.abs(z).max(), np.abs(z).max()
-
-fig, ax = plt.subplots()
-
-c = ax.pcolormesh(df, cmap='RdYlGn', vmin=0, vmax=0.25)
-ax.set_title('Data Collected at Scan Area A-1')
-# # set the limits of the plot to the limits of the data
-#ax.axis([x.min(), x.max(), y.min(), y.max()])
-
-fig.colorbar(c, ax=ax)
-#fig.set_label('Thickness (unit)')
-ax.set_xlabel('Transducter Displacement (unit)')
-ax.set_ylabel('Machine Displacement (unit)')
 plt.show()
+
+
+# plotter()

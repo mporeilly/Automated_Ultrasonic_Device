@@ -1,5 +1,7 @@
 # Capstone
 The files within this repository contain software used to control an automated UT device that is designed to complete API 563 tank inspections. The software was designed around a Raspberry Pi and UT scopes capable of outputting scan data as analog voltage signals between 0 - 1 volt. Please refer to the wiring diagram for setup of the wiring harness.
+
+
   
   INSTALL INSTRUCTIONS:   
   '''
@@ -9,3 +11,7 @@ The files within this repository contain software used to control an automated U
 4. $ Run the setup script by typing "sudo ./setup.sh"
 5. $ To run the application by typing "python main.py"
 '''
+
+
+
+The software setup steps for the touch keyboard were found https://pimylifeup.com/raspberry-pi-on-screen-keyboard/
