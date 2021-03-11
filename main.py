@@ -27,22 +27,25 @@ def plotting_of_open_file():                           # this function is used t
     with open(file_name) as csv_file:
         df = pd.read_csv(file_name)
 
-        scan = df.scan_area   # df is the variable name and .scan_area is the column header 
-        X = df.x_coor
-        Y = df.y_coor
-        Z = df.thickness
+        scan = df["Scan Area"]   # df is the variable name and .scan_area is the column header 
+        X = df["X Coordinate"]
+        Y = df["Y Coordinate"]
+        Z = df["Voltage Reading"]
+        units = df["Measurement Units"]
 
-        previous_scan_unit = df.units[1]
-        previous_scan_name = df.scan_area[1]
+        previous_scan_unit = units[1]
+        print(previous_scan_unit)
+        previous_scan_name = scan[1]
+        print(previous_scan_name)
 
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')       #     https://stackoverflow.com/questions/51891538/create-a-surface-plot-of-xyz-altitude-data-in-python
         ax.plot_trisurf(X, Y, Z, cmap='RdYlGn')#, edgecolors='grey', alpha=0.5)
         ax.scatter(X, Y, Z, c='black')
-        ax.set_title('Data Collected from Scan ' + previous_scan_name)
-        ax.set_xlabel('Transducer Displacement (' + previous_scan_unit +')')
-        ax.set_ylabel('Machine Displacement (' + previous_scan_unit +')')
-        ax.set_zlabel('Material Thickness (' + previous_scan_unit +')')
+        ax.set_title('Data Collected from Scan ' + str(previous_scan_name))
+        ax.set_xlabel('Transducer Displacement (' + str(previous_scan_unit) +')')
+        ax.set_ylabel('Machine Displacement (' + str(previous_scan_unit) +')')
+        ax.set_zlabel('Material Thickness (' + str(previous_scan_unit) +')')
 
         plt.show()
         root.destroy()
@@ -138,25 +141,3 @@ root.mainloop() # starts the pop up window
 #         # should add a color to the data point for displaying later
 
 
-# # data intake section
-# # setup interface for the usb to send data to this code
-# # this section will need to match the baud rate of the information from the serial port on the scope
-# # there will need to be processing of the data delivered where the lowest value acquired is set to measurement
-
-# data1 = DataPoint(1.4, 4, 6)
-# data2 = DataPoint(1.934,3,4)
-
-# # move into a a function for recording data
-# #https://www.geeksforgeeks.org/how-to-create-a-list-of-object-in-python-class/
-# test_value_matrix = []                  # initalizing the array
-
-# test_value_matrix.append(data1)         # this creates an arrays of objects
-# test_value_matrix.append(data2)         # appending instances to list
-
-# file_name = input('pick file name: ') # asking the user for the file name of the csv file
-# csv_function_file.save_csv_file_func(test_value_matrix,file_name + '.csv') # calling the fucntion from the file csv_function_file
-
-# # build user interface
-# # create a matrix which is able to display the
-
-# #https://pimylifeup.com/raspberry-pi-on-screen-keyboard/

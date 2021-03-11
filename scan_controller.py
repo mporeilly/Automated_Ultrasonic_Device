@@ -4,18 +4,12 @@ from WheelStepperFunction import movewheels  # importing created functions from 
 from TransducerStepperFunction import movescanner
 from analogtodig import scan_voltage
 from csv_function_file import save_csv_file_func
-#import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     # if statement to make sure the values fit within the
     value_matrix = [] # initalizing the array that will hold the DataPoint values
-
-
-    # zeroing of the transducter 
-    # while True:
-    # move transducter direction 
-    # if gpio pin 17 == HIGH:
-    #   False
+    GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    # set GPIO25 as input (button)
 
 
     class DataPoint:                                                        # defining class for data collected
@@ -47,6 +41,16 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     scanPath = width  # length of scanner path
     degrees = 1.8/2  # degrees per step (for full stepping, half stepping is utilized in the move functions)
     stepincrement = int(yincrement / (degrees * ((2 * math.pi) / 360) * radius))  # number of steps in y increment
+
+        #https://raspi.tv/2013/rpi-gpio-basics-6-using-inputs-and-outputs-together-with-rpi-gpio-pull-ups-and-pull-downs
+    if GPIO.input(17) != 0: # if port 25 == 0  
+            print("zeroing stage hit")
+            while True:# limit switch GPIO is high:
+                movescanner(belt, degrees, 1, xdirection)  # moves transducer until switch gpio pulled low?
+                if GPIO.input(17) == 1:
+                    break
+
+
 
     # linear interpolation to get the correct thickness from the voltage collected
     def interpolation_func(voltage, gate_start, gate_width):
@@ -84,10 +88,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
                 ydirection = 0
 
-            if  # limit switch GPIO is high:
-                xdirection = 0 # changes transducer direction to move towards limit switch
-                while  # limit switch GPIO is high:
-                    movescanner(belt, degrees, 999999, xdirection)  # moves transducer until switch gpio pulled low?
 
             if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
                 xdirection = 0
@@ -101,8 +101,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 movescanner(belt, degrees, width_impulses, xdirection)
                 print(str(y_movement) + ' is y move and width_impulses is ' + str(x_movement)) 
                 
-                # if gpiopins is high:
-                #     return    # this will stop the machine from moving when the emergency stop is activated
                 voltage = scan_voltage()
                 thickness = interpolation_func(voltage, gate_start, gate_width)
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
@@ -115,4 +113,4 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 print('scan done')
                 operation_flag = 3
 
-        
+        GPIO.cleanup() 
