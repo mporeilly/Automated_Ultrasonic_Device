@@ -3,10 +3,11 @@ import time
 from WheelStepperFunction import movewheels  # importing created functions from external files
 from TransducerStepperFunction import movescanner
 from analogtodig import scan_voltage
+from csv_function_file import save_csv_file_func
+#import RPi.GPIO as GPIO
 
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     # if statement to make sure the values fit within the
-
     value_matrix = [] # initalizing the array that will hold the DataPoint values
 
 
@@ -72,16 +73,12 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     print('op flag value ' + str(operation_flag))
 
 
-
-
-
     while operation_flag == 1:  # this is for the emergency stop to be wired to
 
         for y_movement in range(int(length_impulses)+1):
 
             if y_movement > 0:
                 movewheels(radius, degrees, yincrement, ydirection)
-
                 print('y move ' + str(y_movement))
 
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
@@ -89,16 +86,18 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
             if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
                 xdirection = 0
+
             else:
                 xdirection = 1
 
             for x_movement in range(int(width_impulses)):
-            
+                
+                
                 movescanner(belt, degrees, width_impulses, xdirection)
                 print(str(y_movement) + ' is y move and width_impulses is ' + str(x_movement)) 
                 
                 # if gpiopins is high:
-                #     operation_flag = 0    # this will stop the machine from moving when the emergency stop is activated
+                #     return    # this will stop the machine from moving when the emergency stop is activated
                 voltage = scan_voltage()
                 thickness = interpolation_func(voltage, gate_start, gate_width)
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
@@ -107,5 +106,8 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 value_matrix.append(DataPoint(scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text))
       
             if y_movement == max(range(int(length_impulses)+1)):
+                save_csv_file_func(value_matrix, scan_name)  # writes the data to a csv file
                 print('scan done')
                 operation_flag = 3
+
+        
