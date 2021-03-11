@@ -65,6 +65,11 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
             if y_movement == length_impulses:  # when length is reached, reverse wheel direction
                 ydirection = 0
 
+            if  # limit switch GPIO is high:
+                xdirection = 0 # changes transducer direction to move towards limit switch
+                while  # limit switch GPIO is high:
+                    movescanner(belt, degrees, 999999, xdirection)  # moves transducer until switch gpio pulled low?
+
             if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
                 xdirection = 0
             else:
