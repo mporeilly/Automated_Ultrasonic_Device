@@ -13,15 +13,4 @@ def scan_voltage():
   mcp = MCP.MCP3008(spi, cs)
   channel = AnalogIn(mcp, MCP.P0)
 
-  GPIO.setmode(GPIO.BCM)
-  GPIO.setup(17,  GPIO.OUT)
-
   return str(channel.voltage)
-
-  # while True:
-  #   print('Raw ADC Value: ', channel.value)
-  #   print('ADC Voltage: ' + str(channel.voltage) + 'V')
-  #   time.sleep(0.5)
-
-    ### updating video found https://www.youtube.com/watch?v=oZhJDDSUSRI&ab_channel=OnlineWebcoach
-  # scan_window.mainloop()
