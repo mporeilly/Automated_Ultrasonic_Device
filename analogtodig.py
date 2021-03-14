@@ -13,7 +13,7 @@ def scan_voltage():
   mcp = MCP.MCP3008(spi, cs)
   channel = AnalogIn(mcp, MCP.P0)
 
-  # GPIO.setmode(GPIO.BCM)
+  GPIO.setmode(GPIO.BCM)
   # GPIO.setup(17,  GPIO.OUT)
 
   return str(channel.voltage)
