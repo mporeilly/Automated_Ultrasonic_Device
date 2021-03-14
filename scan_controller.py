@@ -103,7 +103,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                 
                 voltage = float(scan_voltage())                                     # value delivered from the function is a string converted to float for math
                 thickness = interpolation_func(voltage, gate_start, gate_width)
-                print(voltage + ' ' + thickness)
                 # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
                 x_coordinate = impulse_to_measurement(x_movement)                           # need to account for the path back
                 y_coordinate = impulse_to_measurement(y_movement)       
