@@ -8,6 +8,7 @@ import pandas as pd
 import tkinter.messagebox as tkmb
 from analogtodig import scan_voltage
 import csv
+import time
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
@@ -55,6 +56,7 @@ def plotting_of_open_file():                           # this function is used t
 def scan_values_func():
     while True:
         print("Current Voltage Reading", scan_voltage)
+        time.sleep(0.5)
 
 
 # value of 1 indicates inches is selected
