@@ -14,7 +14,7 @@ def scan_voltage():
   channel = AnalogIn(mcp, MCP.P0)
 
   GPIO.setmode(GPIO.BCM)
-  # GPIO.setup(17,  GPIO.OUT)
+  GPIO.setup(17,  GPIO.OUT)
 
   return str(channel.voltage)
 
