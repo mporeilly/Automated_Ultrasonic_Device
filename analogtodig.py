@@ -16,7 +16,7 @@ def scan_voltage():
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(17,  GPIO.OUT)
 
-  return str(channel.voltage)
+  return channel.voltage
 
   # while True:
   #   print('Raw ADC Value: ', channel.value)
