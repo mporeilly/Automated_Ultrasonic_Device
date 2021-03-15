@@ -3,7 +3,7 @@ import time
 from WheelStepperFunction import movewheels  # importing created functions from external files
 from TransducerStepperFunction import movescanner
 from analogtodig import scan_voltage
-from csv_function_file import save_csv_file_func
+#from csv_function_file import save_csv_file_func
 import RPi.GPIO as GPIO
 import csv
 
@@ -114,8 +114,8 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     value_matrix.append(DataPoint(scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text))
                     #csv_writer.writerow([scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text])
                 for line in value_matrix:                      # looping through the lines in the test matrix
-                    csv_writer.writerow([line.scan_file_name, line.gate_start_value, line.gate_width_value, line.x_coordinate, line.y_coordinate, line.voltage_data, line.measurement_thickness, line.units])   # writing rows into the csv file 
-                
+                    #csv_writer.writerow([line.scan_file_name, line.gate_start_value, line.gate_width_value, line.x_coordinate, line.y_coordinate, line.voltage_data, line.measurement_thickness, line.units])   # writing rows into the csv file 
+                    csv_writer.writerow(value_matrix)
                 value_matrix =[]
 
                 if y_movement == max(range(int(length_impulses)+1)):
