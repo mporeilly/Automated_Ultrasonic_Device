@@ -5,6 +5,7 @@ from TransducerStepperFunction import movescanner
 from analogtodig import scan_voltage
 from csv_function_file import save_csv_file_func
 import RPi.GPIO as GPIO
+import csv
 
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     # if statement to make sure the values fit within the
@@ -76,41 +77,46 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     print(range(int(length_impulses)))
     print('op flag value ' + str(operation_flag))
 
+    # start of csv intialization
+    with open(scan_name +'.csv','w') as output_file:      # output_file is a variable for the file being exported w means write
+        csv_writer = csv.writer(output_file, delimiter=',')  # assigning a variable to control the format of the file exported
+        csv_writer.writerow(['Scan Area','Gate Start','Gate Width','X Coordinate','Y Coordinate','Voltage Reading','Measurement Value','Measurement Units']) # this info needs to be lower case for the open saved data function to work properly
 
-    while operation_flag == 1:  # this is for the emergency stop to be wired to
+        while operation_flag == 1:  # this is for the emergency stop to be wired to
 
-        for y_movement in range(int(length_impulses)+1):
+            for y_movement in range(int(length_impulses)+1):
 
-            if y_movement > 0:
-                movewheels(radius, degrees, yincrement, ydirection)
-                print('y move ' + str(y_movement))
+                if y_movement > 0:
+                    movewheels(radius, degrees, yincrement, ydirection)
+                    print('y move ' + str(y_movement))
 
-            if y_movement == length_impulses:  # when length is reached, reverse wheel direction
-                ydirection = 0
+                if y_movement == length_impulses:  # when length is reached, reverse wheel direction
+                    ydirection = 0
 
 
-            if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
-                xdirection = 0
+                if y_movement % 2 != 0:  # this reverses x direction after each probe sweep
+                    xdirection = 0
 
-            else:
-                xdirection = 1
+                else:
+                    xdirection = 1
 
-            for x_movement in range(int(width_impulses)):
-                
-                
-                movescanner(belt, degrees, width_impulses, xdirection)
-                print(str(y_movement) + ' is y impulse and width (x) impulse is ' + str(x_movement)) 
-                
-                voltage = float(scan_voltage())                                     # value delivered from the function is a string converted to float for math
-                thickness = interpolation_func(voltage, gate_start, gate_width)
-                # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
-                x_coordinate = impulse_to_measurement(x_movement)                           # need to account for the path back
-                y_coordinate = impulse_to_measurement(y_movement)       
-                value_matrix.append(DataPoint(scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text))
-      
-            if y_movement == max(range(int(length_impulses)+1)):
-                save_csv_file_func(value_matrix, scan_name)  # writes the data to a csv file
-                print('scan done')
-                operation_flag = 3
+                for x_movement in range(int(width_impulses)):
+                    
+                    
+                    movescanner(belt, degrees, width_impulses, xdirection)
+                    print(str(y_movement) + ' is y impulse and width (x) impulse is ' + str(x_movement)) 
+                    
+                    voltage = float(scan_voltage())                                     # value delivered from the function is a string converted to float for math
+                    thickness = interpolation_func(voltage, gate_start, gate_width)
+                    # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
+                    x_coordinate = impulse_to_measurement(x_movement)                           # need to account for the path back
+                    y_coordinate = impulse_to_measurement(y_movement)       
+                    #value_matrix.append(DataPoint(scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text))
+                    csv_writer.writerow([scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text])
 
-        GPIO.cleanup() 
+                if y_movement == max(range(int(length_impulses)+1)):
+                    #save_csv_file_func(value_matrix, scan_name)  # writes the data to a csv file
+                    print('scan done')
+                    operation_flag = 3
+
+            GPIO.cleanup() 
