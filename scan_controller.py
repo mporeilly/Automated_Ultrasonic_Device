@@ -78,7 +78,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     print('op flag value ' + str(operation_flag))
 
     # start of csv intialization
-    with open(scan_name +'.csv','w') as output_file:      # output_file is a variable for the file being exported w means write
+    with open(scan_name +'.csv','a') as output_file:      # output_file is a variable for the file being exported w means write
         csv_writer = csv.writer(output_file, delimiter=',')  # assigning a variable to control the format of the file exported
         csv_writer.writerow(['Scan Area','Gate Start','Gate Width','X Coordinate','Y Coordinate','Voltage Reading','Measurement Value','Measurement Units']) # this info needs to be lower case for the open saved data function to work properly
 
@@ -115,7 +115,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     #csv_writer.writerow([scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text])
                 for line in value_matrix:                      # looping through the lines in the test matrix
                     csv_writer.writerow([line.scan_file_name, line.gate_start_value, line.gate_width_value, line.x_coordinate, line.y_coordinate, line.voltage_data, line.measurement_thickness, line.units])   # writing rows into the csv file 
-                
+                csv_writer.close
                 value_matrix =[]
 
                 if y_movement == max(range(int(length_impulses)+1)):
