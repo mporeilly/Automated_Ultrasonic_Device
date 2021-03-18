@@ -7,7 +7,7 @@ def scan_voltage():
   import time
   import RPi.GPIO as GPIO
   from adafruit_mcp3xxx.analog_in import AnalogIn
-
+  GPIO.setmode(GPIO.BCM)
   spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
   cs = digitalio.DigitalInOut(board.D5)
   mcp = MCP.MCP3008(spi, cs)
