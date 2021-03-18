@@ -13,8 +13,8 @@ def movescanner(radius, degrees, distance, direction):
     m_pins = (10, 12, 32)  # M-pins of driver set to GPIO pins 10 12 and 32 on pi
     # step = 23  # step pin of driver set to GPIO 23 on pi
     # dir = 24  # dir pin of driver set to GPIO 24 on pi
-    step = 21  # step pin of driver set to GPIO 23 on pi
-    dir = 20
+    step = 20  # step pin of driver set to GPIO 23 on pi
+    dir = 21
     half = (1, 0, 0)  # sequence of m-pins activation for half stepping (M0 high, M1 and M2 low)
 
     # Note that may be able to just pull the M-pins high and low by connecting M0 to 3.3v rail, M1 and M2 to ground

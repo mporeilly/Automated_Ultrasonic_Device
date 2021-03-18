@@ -45,7 +45,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     stepincrement = int(yincrement / (degrees * ((2 * math.pi) / 360) * radius))  # number of steps in y increment
 
         #https://raspi.tv/2013/rpi-gpio-basics-6-using-inputs-and-outputs-together-with-rpi-gpio-pull-ups-and-pull-downs
-    # if GPIO.input(17) != 0: # if port 25 == 0  
+    # if GPIO.input(17) == 0: # if port 25 == 0
     #         print("zeroing stage hit")
     #         while True:# limit switch GPIO is high:
     #             movescanner(belt, degrees, 1, xdirection)  # moves transducer until switch gpio pulled low?
