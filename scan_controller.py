@@ -10,8 +10,8 @@ import csv
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     # if statement to make sure the values fit within the
     value_matrix = [] # initalizing the array that will hold the DataPoint values
-    GPIO.setmode(GPIO.BCM) # choose the pin numbering    apperently needed to prevent error on line below
-    GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    # set GPIO25 as input (button)
+    #GPIO.setmode(GPIO.BCM) # choose the pin numbering    apperently needed to prevent error on line below
+    #GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    # set GPIO25 as input (button)
 
 
     class DataPoint:                                                        # defining class for data collected
