@@ -56,9 +56,11 @@ def plotting_of_open_file():                           # this function is used t
 
 
 def scan_values_func():
-    while True:
+    i = 1
+    while i > 100:
         print("Current Voltage Reading " + scan_voltage() + 'V')
         time.sleep(0.5)
+        i=i+1
 
 
 # value of 1 indicates inches is selected
