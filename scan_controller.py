@@ -55,7 +55,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
     # linear interpolation to get the correct thickness from the voltage collected
     def interpolation_func(voltage, gate_start, gate_width):
-        thickness = (((voltage*(float(gate_start+gate_width))-float(gate_start)))/(1))+float(gate_start)   # got an non-int of type float error
+        thickness = (((voltage*(float(gate_start)+float(gate_width))-float(gate_start)))/(1))+float(gate_start)   # got an non-int of type float error
         return thickness
 
     def measurement_to_impulse(length):                
