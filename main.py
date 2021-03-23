@@ -9,6 +9,8 @@ import tkinter.messagebox as tkmb
 from analogtodig import scan_voltage
 import csv
 import time
+import RPi.GPIO as GPIO
+GPIO.cleanup()
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
