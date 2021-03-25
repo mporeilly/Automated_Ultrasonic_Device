@@ -110,8 +110,12 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     voltage = scan_voltage(ser)
                     print(voltage)                                     # value delivered from the function is a string converted to float for math
                     thickness = interpolation_func(float(voltage), gate_start, gate_width)
-                    # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer
-                    x_coordinate = impulse_to_measurement(x_movement)                           # need to account for the path back
+                    
+                    if (x_coordinate % 2) > 0: # need to account for the serpintine path back
+                        x_coordinate = impulse_to_measurement(int(width_impulses)-x_movement)                           # need to account for the path back
+                    else:
+                        x_coordinate = impulse_to_measurement(x_movement)
+
                     y_coordinate = impulse_to_measurement(y_movement)       
                     value_matrix.append(DataPoint(scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text))
                     
