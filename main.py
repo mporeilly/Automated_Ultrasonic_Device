@@ -58,7 +58,6 @@ def plotting_of_open_file():                           # this function is used t
 def scan_values_func():
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     while True:
-        ser.flush()
         print("Current Voltage Reading " + scan_voltage(ser) + 'V')
 
 
