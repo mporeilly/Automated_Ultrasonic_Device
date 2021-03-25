@@ -5,6 +5,7 @@ from TransducerStepperFunction import movescanner
 from analogtodig import scan_voltage
 import RPi.GPIO as GPIO
 import csv
+import serial
 
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     # if statement to make sure the values fit within the
@@ -80,7 +81,9 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     with open(scan_name +'.csv','w') as output_file:      # output_file is a variable for the file being exported w means write
         csv_writer = csv.writer(output_file, delimiter=',')  # assigning a variable to control the format of the file exported
         csv_writer.writerow(['Scan Area','Gate Start','Gate Width','X Coordinate','Y Coordinate','Voltage Reading','Measurement Value','Measurement Units']) # this info needs to be lower case for the open saved data function to work properly
-
+        
+        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser.flush()
         while operation_flag == 1:  # this is for the emergency stop to be wired to
 
             for y_movement in range(int(length_impulses)+1):
@@ -104,7 +107,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     movescanner(belt, degrees, width_impulses, xdirection)
                     print(str(y_movement) + ' is y impulse and width (x) impulse is ' + str(x_movement)) 
                     
-                    voltage = scan_voltage()
+                    voltage = scan_voltage(ser)
                     print(voltage)                                     # value delivered from the function is a string converted to float for math
                     thickness = interpolation_func(float(voltage), gate_start, gate_width)
                     # https://www.youtube.com/watch?v=Ercd-Ip5PfQ&ab_channel=CoreySchafer

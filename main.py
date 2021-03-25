@@ -10,7 +10,7 @@ from analogtodig import scan_voltage
 import csv
 import time
 import RPi.GPIO as GPIO
-GPIO.cleanup()
+import serial
 
 root = tk.Tk()                                          # root is the window similar to index.html
 root.title('Scanner Application')                       # header info
@@ -56,9 +56,11 @@ def plotting_of_open_file():                           # this function is used t
 
 
 def scan_values_func():
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.flush()
     while True:
-        print("Current Voltage Reading " + scan_voltage() + 'V')
-        #time.sleep(0.5)
+        print("Current Voltage Reading " + scan_voltage(ser) + 'V')
+        time.sleep(0.5)
 
 
 # value of 1 indicates inches is selected

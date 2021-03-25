@@ -1,16 +1,4 @@
-def scan_voltage():
-  #https://github.com/tmckay1/pi_read_analog/blob/master/potentiometer.py
-  import busio
-  import digitalio
-  import board
-  import adafruit_mcp3xxx.mcp3008 as MCP
-  import time
-  import RPi.GPIO as GPIO
-  from adafruit_mcp3xxx.analog_in import AnalogIn
-  GPIO.setmode(GPIO.BCM)
-  spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
-  cs = digitalio.DigitalInOut(board.D5)
-  mcp = MCP.MCP3008(spi, cs)
-  channel = AnalogIn(mcp, MCP.P0)
-
-  return str(channel.voltage)
+def scan_voltage(ser):
+#https://www.youtube.com/watch?v=3QSsnnbJYFc&ab_channel=ElitheComputerGuy
+  voltage = ser.readline().decode('utf-8').rstrip()
+  return str(voltage)
