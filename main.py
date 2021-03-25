@@ -60,7 +60,6 @@ def scan_values_func():
     while True:
         ser.flush()
         print("Current Voltage Reading " + scan_voltage(ser) + 'V')
-        time.sleep(0.5)
 
 
 # value of 1 indicates inches is selected
