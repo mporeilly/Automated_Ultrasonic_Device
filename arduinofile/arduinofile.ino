@@ -8,7 +8,7 @@ void loop(){
   int sensorValue = analogRead(A0);
 
   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0-5v)
-  float voltage = sensorValue * (5.000 / 1023);
+  float voltage = sensorValue * (1.000 / 1023);
   // print out the voltage value to the serial interface to 4 decimal places
   Serial.println(voltage, 4);
   delay(50);
