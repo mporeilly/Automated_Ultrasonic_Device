@@ -1,5 +1,5 @@
 import tkinter as tk                                    # import the package for the window 
-from scan_controller import scan_control    
+from scan_controller import scan_control, interpolation_func
 from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
 import numpy as np
@@ -53,10 +53,21 @@ def plotting_of_open_file():                           # this function is used t
         
 
 
-def scan_values_func():
+def scan_values_func(gate_start, gate_width, unit):
+    if unit != 1 and unit != 2:
+        return
+    if unit == 2:
+        unit_text = 'inches'
+
+    if unit == 1:
+        unit_text = 'mm'
+
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    
     while True:
-        print("Current Voltage Reading " + scan_voltage(ser) + 'V')
+        voltage = scan_voltage(ser)
+        thickness = interpolation_func(voltage, gate_start, gate_width)
+        print("Current Voltage Reading " + voltage + 'V, the thickness is '+ thickness +' '+ unit_text)
 
 
 # value of 1 indicates inches is selected
@@ -114,7 +125,7 @@ myLabel.grid(row=3, column=0)
 openfile_button = tk.Button(root, text='Open File',command=lambda:plotting_of_open_file())     # creates the button
 openfile_button.grid(row=1, column=1)
 
-savefile_button = tk.Button(root, text='Test Calibration',command=lambda:scan_values_func())
+savefile_button = tk.Button(root, text='Test Calibration',command=lambda:scan_values_func(gate_start_textbox.get(), gate_width_textbox.get(), milimeter_selection.get()))
 savefile_button.grid(row=1, column=2)
 
 runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_control(width_textbox.get(), length_textbox.get(), gate_start_textbox.get(), gate_width_textbox.get(), milimeter_selection.get(), operation_flag, scan_name_textbox.get()))
