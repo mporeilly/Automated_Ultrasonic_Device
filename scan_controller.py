@@ -71,7 +71,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         return distance_of_impulse
 
     length_impulses = measurement_to_impulse(length) / stepincrement # number of forward increments in grid
-    width_impulses = int(measurement_to_impulse(width*int(2.4)))  # number of steps per probe sweep
+    width_impulses = int(measurement_to_impulse(width*int(2)))  # number of steps per probe sweep
     print(length_impulses)
     print(width_impulses)
     xdirection = 1  # starting direction of probe set to left->right
