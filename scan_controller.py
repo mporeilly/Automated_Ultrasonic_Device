@@ -44,7 +44,6 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         yincrement = 19.05  # y increment in mm
         unit_text = 'mm'
 
-    scanPath = width  # length of scanner path
     degrees = 1.8/2  # degrees per step (for full stepping, half stepping is utilized in the move functions)
     stepincrement = int(yincrement / (degrees * ((2 * math.pi) / 360) * radius))  # number of steps in y increment
 
