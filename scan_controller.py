@@ -59,7 +59,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     # linear interpolation to get the correct thickness from the voltage collected
 
 
-    def measurement_to_impulse(length):                
+    def measurement_to_impulse(length,radius):                
         #returns the number of impulses required to drive the
         impulse_number = int(float(length) / (degrees * ((2 * math.pi) / 360) * radius)) # steps per length
         return impulse_number
@@ -69,8 +69,8 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         distance_of_impulse = impulse * (degrees * ((2 * math.pi) / 360) * radius)
         return distance_of_impulse
 
-    length_impulses = measurement_to_impulse(length) / stepincrement # number of forward increments in grid
-    width_impulses = int(measurement_to_impulse(width*int(2)))  # number of steps per probe sweep
+    length_impulses = measurement_to_impulse(length,radius) / stepincrement # number of forward increments in grid
+    width_impulses = int(measurement_to_impulse(width,belt))  # number of steps per probe sweep
     print(length_impulses)
     print(width_impulses)
     xdirection = 1  # starting direction of probe set to left->right
