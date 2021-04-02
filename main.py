@@ -1,5 +1,6 @@
 import tkinter as tk                                    # import the package for the window 
-from scan_controller import scan_control, interpolation_func
+from scan_controller import scan_control
+from scan_controller import interpolation_func
 from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
 import numpy as np

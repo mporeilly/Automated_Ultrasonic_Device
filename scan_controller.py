@@ -7,6 +7,10 @@ import RPi.GPIO as GPIO
 import csv
 import serial
 
+def interpolation_func(voltage, gate_start, gate_width):
+    thickness = (((voltage*(float(gate_start)+float(gate_width))-float(gate_start)))/(1))+float(gate_start)   # got an non-int of type float error
+    return thickness
+
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     # if statement to make sure the values fit within the
     value_matrix = [] # initalizing the array that will hold the DataPoint values
@@ -57,9 +61,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
 
     # linear interpolation to get the correct thickness from the voltage collected
-    def interpolation_func(voltage, gate_start, gate_width):
-        thickness = (((voltage*(float(gate_start)+float(gate_width))-float(gate_start)))/(1))+float(gate_start)   # got an non-int of type float error
-        return thickness
+
 
     def measurement_to_impulse(length):                
         #returns the number of impulses required to drive the
