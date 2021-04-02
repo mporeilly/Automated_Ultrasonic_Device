@@ -3,8 +3,8 @@ The files within this repository contain software used to control an automated U
 
 
   
-  INSTALL INSTRUCTIONS:
-  ----------------   
+INSTALL INSTRUCTIONS
+----------------   
   '''
 1. $ Download the GitHub repo to the Raspberry PI
 2. $ Navigate to the folder in the terminal application
@@ -15,6 +15,7 @@ The files within this repository contain software used to control an automated U
 
 
 Install Touch Keyboard
+--------
    
     The software setup steps found https://pimylifeup.com/raspberry-pi-on-screen-keyboard/
 
