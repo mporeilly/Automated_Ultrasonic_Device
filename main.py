@@ -57,6 +57,7 @@ def plotting_of_open_file():                           # this function is used t
 def scan_values_func(gate_start, gate_width, unit):
     if unit != 1 and unit != 2:
         return
+
     if unit == 2:
         unit_text = 'inches'
 
@@ -68,7 +69,7 @@ def scan_values_func(gate_start, gate_width, unit):
     while True:
         voltage = scan_voltage(ser)
         thickness = interpolation_func(voltage, gate_start, gate_width)
-        print("Current Voltage Reading " + voltage + 'V, the thickness is '+ thickness +' '+ unit_text)
+        print("Current Voltage Reading " + str(voltage) + 'V, the thickness is '+ str(thickness) +' '+ unit_text)
 
 
 # value of 1 indicates inches is selected
