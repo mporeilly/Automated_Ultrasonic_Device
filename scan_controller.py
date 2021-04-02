@@ -76,7 +76,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     print(length_impulses)
     print(width_impulses)
     xdirection = 1  # starting direction of probe set to left->right
-    ydirection = 1  # starting direction of wheels set to forward
+    ydirection = 0  # starting direction of wheels set to forward
     print(range(int(length_impulses)))
     print('op flag value ' + str(operation_flag))
 
