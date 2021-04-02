@@ -27,6 +27,9 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
 
     if unit != 1 and unit != 2:
         return
+    
+    if (unit == 1 and int(width) > 304.8) or (unit == 2 and int(width) > 12):       # this prevents the transducer from overshooting x limit
+        return
 
     if unit == 2:
         radius = 1.5  # wheel radius in inches

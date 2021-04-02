@@ -37,9 +37,9 @@ def plotting_of_open_file():                           # this function is used t
         units = df["Measurement Units"]
 
         previous_scan_unit = units[1]
-        print(previous_scan_unit)
+        #print(previous_scan_unit)
         previous_scan_name = scan[1]
-        print(previous_scan_name)
+        #print(previous_scan_name)
 
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')       #     https://stackoverflow.com/questions/51891538/create-a-surface-plot-of-xyz-altitude-data-in-python
