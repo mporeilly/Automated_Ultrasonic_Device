@@ -1,5 +1,4 @@
 import tkinter as tk                                    # import the package for the window 
-#import csv_function_file                                # import the custom function for saving to csv file 
 from scan_controller import scan_control    
 from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
@@ -37,14 +36,13 @@ def plotting_of_open_file():                           # this function is used t
         units = df["Measurement Units"]
 
         previous_scan_unit = units[1]
-        #print(previous_scan_unit)
         previous_scan_name = scan[1]
-        #print(previous_scan_name)
+        
 
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')       #     https://stackoverflow.com/questions/51891538/create-a-surface-plot-of-xyz-altitude-data-in-python
-        ax.plot_trisurf(X, Y, Z, cmap='RdYlGn')#, edgecolors='grey', alpha=0.5)
-        ax.scatter(X, Y, Z, c='black')
+        ax.plot_trisurf(X, Y, Z, cmap='RdYlGn')
+        #ax.scatter(X, Y, Z, c='black')
         ax.set_title('Data Collected from Scan ' + str(previous_scan_name))
         ax.set_xlabel('Transducer Displacement (' + str(previous_scan_unit) +')')
         ax.set_ylabel('Machine Displacement (' + str(previous_scan_unit) +')')
@@ -114,17 +112,17 @@ myLabel = tk.Label(root, text='Unit Selection:')        # labels the unit select
 myLabel.grid(row=3, column=0)
 
 openfile_button = tk.Button(root, text='Open File',command=lambda:plotting_of_open_file())     # creates the button
-openfile_button.grid(row=1, column=0)
+openfile_button.grid(row=1, column=1)
 
 savefile_button = tk.Button(root, text='Test Calibration',command=lambda:scan_values_func())
-savefile_button.grid(row=1, column=1)
+savefile_button.grid(row=1, column=2)
 
 runscan_button = tk.Button(root, text='Run Scan', command=lambda: scan_control(width_textbox.get(), length_textbox.get(), gate_start_textbox.get(), gate_width_textbox.get(), milimeter_selection.get(), operation_flag, scan_name_textbox.get()))
-runscan_button.grid(row=1, column=2)
+runscan_button.grid(row=1, column=3)
 
 
 # work on pop up to tell the operator to reset the scanner at the origin of the scan
 resetscan_button = tk.Button(root, text='Reset Scan', bg='orange')
-resetscan_button.grid(row=1, column=3)
+resetscan_button.grid(row=1, column=0)
 
 root.mainloop() # starts the pop up window
