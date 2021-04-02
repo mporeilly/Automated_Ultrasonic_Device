@@ -135,7 +135,7 @@ runscan_button.grid(row=1, column=3)
 
 
 # work on pop up to tell the operator to reset the scanner at the origin of the scan
-resetscan_button = tk.Button(root, text='Reset Scan', bg='orange')
+resetscan_button = tk.Label(root, text='NextGen') 
 resetscan_button.grid(row=1, column=0)
 
 root.mainloop() # starts the pop up window
