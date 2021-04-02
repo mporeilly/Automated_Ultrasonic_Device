@@ -20,8 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7a645f6-12ff-4903-b478-36621e85051a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransducerStepperFunction.py" beforeDir="false" afterPath="$PROJECT_DIR$/TransducerStepperFunction.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scan_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/scan_controller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
