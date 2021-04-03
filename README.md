@@ -35,7 +35,7 @@ Running the Application
 Install Touch Keyboard
 --------
    
-    The software setup steps found https://pimylifeup.com/raspberry-pi-on-screen-keyboard/
+The software setup steps found https://pimylifeup.com/raspberry-pi-on-screen-keyboard/
 
 Solution to "Errno [24]"
 
