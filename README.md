@@ -43,13 +43,13 @@ The software setup steps found https://pimylifeup.com/raspberry-pi-on-screen-key
 Solution to "Errno [24]"
 ---------
 1. Run the command 
-    ulimit -Hn
+    >ulimit -Hn
 2. Run the command 
-    ulimit -Sn  <- the value returned here seems to be the system's limit 
+    >ulimit -Sn  <- the value returned here seems to be the system's limit 
 3. Edit config file 
-    sudo nano /etc/security/limits.conf
+    >sudo nano /etc/security/limits.conf
 4. Add a line to the file 
-    * soft nofile 50000
+    >* soft nofile 50000
   
 Sources:
   
