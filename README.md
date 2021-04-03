@@ -1,5 +1,8 @@
 # Capstone
-The files within this repository contain software used to control an Automated Ultrasonic Device that is designed to complete API 563 tank inspections. The software was designed around a Raspberry Pi and Olympus UT scopes capable of outputting scan data as an analog voltage signals between 0 - 1 volt. Due to interference from the GPIO pins on the Pi an Arduino will collect the voltage values which will then be sent to the Pi over a serial connetion in the form of a USB cable. Please refer to the wiring diagram in the Electrical folder for setup of the wiring harness.
+The files within this repository contain software used to control an Automated Ultrasonic Device that is designed to complete API 563 tank inspections. The software was designed around a Raspberry Pi and Olympus UT scopes capable of outputting scan data as an analog voltage signals between 0 - 1 Volt. Due to interference from the GPIO pins on the Pi an Arduino will collect the voltage values which will then be sent to the Pi over a serial connetion in the form of a USB cable. Please refer to the wiring diagram for setup of the wiring harness.
+
+![Image of Wiring Diagram]
+(https://github.com/mporeilly/Capstone/blob/master/Electrical/Schematic_Wiring%20Diagram.png)
 
 
   
@@ -38,14 +41,17 @@ Install Touch Keyboard
 The software setup steps found https://pimylifeup.com/raspberry-pi-on-screen-keyboard/
 
 Solution to "Errno [24]"
-
-    run the command "ulimit -Hn"
-    run the command "ulimit -Sn"  <- the value returned here seems to be the system's limit 
+---------
+1. Run the command 
+    ulimit -Hn
+2. Run the command 
+    ulimit -Sn  <- the value returned here seems to be the system's limit 
+3. Edit config file 
+    sudo nano /etc/security/limits.conf
+4. Add a line to the file 
+    * soft nofile 50000
   
-    edit config file "sudo nano /etc/security/limits.conf"
-    add a line to the file "* soft nofile 50000"
+Sources:
   
-    Sources
-  
-     https://www.24x7serversupport.com/blog/how-to-increase-the-ulimit-and-file-descriptors-limit-in-linux/
-     https://www.tecmint.com/increase-set-open-file-limits-in-linux/
+  https://www.24x7serversupport.com/blog/how-to-increase-the-ulimit-and-file-descriptors-limit-in-linux/
+  https://www.tecmint.com/increase-set-open-file-limits-in-linux/
