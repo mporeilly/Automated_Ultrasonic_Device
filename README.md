@@ -9,13 +9,13 @@ INSTALL INSTRUCTIONS
 1. Download the GitHub repo to the Raspberry PI
 2. Navigate into the downloaded folder in a terminal application
 3. Create a virtual python environment 
-  >  python3 -m venv venv_utapp
+   >python3 -m venv venv_utapp
 4. Activate the virtual environment
-   > source venv_utapp/bin/activate
+   >source venv_utapp/bin/activate
 5. Edit the permissions of the setup.sh file 
-   > chmod 775 setup.sh
+   >chmod 775 setup.sh
 6. Run the setup script 
-  >  sudo ./setup.sh
+   >sudo ./setup.sh
 7. Download the Arduino application from the offical site: https://www.arduino.cc/en/software
 8. Plug in the Arduino to the Raspberry Pi with a USB A to B cable
 9. Open the Arduino application and upload **voltagecollector.ino** from the arduino folder within the Capstone folder
@@ -26,9 +26,9 @@ Running the Application
 
 1. Navigate to the folder location in a terminal application
 2. Activate the previously created virtual environment
-   > source venv_utapp/bin/activate
+   >source venv_utapp/bin/activate
 3. Now start the program
-    >python main.py
+   >python main.py
 
 
 
