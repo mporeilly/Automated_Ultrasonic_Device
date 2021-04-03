@@ -9,7 +9,7 @@ INSTALL INSTRUCTIONS
 1. $ Download the GitHub repo to the Raspberry PI
 2. $ Navigate into the downloaded folder in a terminal application
 3. $ Create a virtual python environment 
-    python3 -m venv venv_utapp
+  >  python3 -m venv venv_utapp
 4. $ Activate the virtual environment
     source venv_utapp/bin/activate
 5. $ Edit the permissions of the setup.sh file 
