@@ -1,6 +1,0 @@
-###### Requirements with Version Specifiers ######
-#   See https://www.python.org/dev/peps/pep-0440/#version-specifiers
-pandas >= 1.2.1
-matplotlib >= 3.3.4
-numpy >= 1.20.1
-adafruit-circuitpython-mcp3xxx >= 1.4.3
