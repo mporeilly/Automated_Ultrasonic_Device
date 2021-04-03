@@ -34,6 +34,8 @@ Running the Application
    >python main.py
 
 
+![alt text](https://github.com/mporeilly/Capstone/blob/master/Photos/GUI_V2.png)
+
 
 Install Touch Keyboard
 --------
