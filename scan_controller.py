@@ -111,7 +111,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     voltage = scan_voltage(ser)
                     print(voltage)                                     # value delivered from the function is a string converted to float for math
                     thickness1 = interpolation_func(float(voltage), gate_start, gate_width)
-                    thickness = ((289.21*(thickness1^3))-(196.88*(thickness1^2))+(46.959*thickness1)-2.0994)
+                    thickness = ((289.21*(thickness1**3))-(196.88*(thickness1**2))+(46.959*thickness1)-2.0994)
                     
                     if (y_movement % 2) > 0: # need to account for the serpintine path back
                         x_coordinate = impulse_to_measurement(int(width_impulses)-x_movement)                           # need to account for the path back
