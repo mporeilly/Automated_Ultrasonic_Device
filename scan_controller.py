@@ -68,7 +68,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         impulse_number = int(float(length) / (degrees * ((2 * math.pi) / 360) * radius)) # steps per length
         return impulse_number
 
-    def impulse_to_measurement(impulse):               
+    def impulse_to_measurement(impulse,radius):               
         #returns the distance from the impulse value
         distance_of_impulse = impulse * (degrees * ((2 * math.pi) / 360) * radius)
         return distance_of_impulse
