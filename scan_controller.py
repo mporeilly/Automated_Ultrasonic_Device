@@ -39,7 +39,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     if unit == 2:
         radius = 1.5  # wheel radius in inches
         belt = 1  # temporary belt radius in inches
-        yincrement = 0.75  # y increment in inches
+        yincrement = 1.25  # y increment in inches
         unit_text = 'inches'
 
     if unit == 1:
