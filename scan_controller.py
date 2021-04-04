@@ -12,7 +12,7 @@ def interpolation_func(voltage, gate_start, gate_width):
     return thickness
 
 def thickness_interpolation(thick_value):
-    interpolated_thickness = ((289.21*(thick_value**3))-(196.88*(thick_value**2))+(46.959*thick_value)-2.0994)
+    interpolated_thickness = ((289.21*(thick_value**3))-(196.88*(thick_value**2))+(46.959*thick_value)-2.0994)*thick_value
     return interpolated_thickness
 
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
