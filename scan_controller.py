@@ -44,7 +44,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
         yincrement = 19.05  # y increment in mm
         unit_text = 'mm'
 
-    degrees = 1.8/2  # degrees per step (for full stepping, half stepping is utilized in the move functions)
+    degrees = 1.8/2  # degrees per step (for half stepping utilized in the move functions)
     stepincrement = int(yincrement / (degrees * ((2 * math.pi) / 360) * radius))  # number of steps in y increment
 
         #https://raspi.tv/2013/rpi-gpio-basics-6-using-inputs-and-outputs-together-with-rpi-gpio-pull-ups-and-pull-downs
@@ -110,7 +110,8 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     
                     voltage = scan_voltage(ser)
                     print(voltage)                                     # value delivered from the function is a string converted to float for math
-                    thickness = interpolation_func(float(voltage), gate_start, gate_width)
+                    thickness1 = interpolation_func(float(voltage), gate_start, gate_width)
+                    thickness = ((289.21*(thickness1^3))-(196.88*(thickness1^2))+(46.959*thickness1)-2.0994)
                     
                     if (y_movement % 2) > 0: # need to account for the serpintine path back
                         x_coordinate = impulse_to_measurement(int(width_impulses)-x_movement)                           # need to account for the path back
