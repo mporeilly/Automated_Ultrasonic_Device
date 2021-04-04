@@ -119,7 +119,7 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     
                     
                     if (y_movement % 2) > 0: # need to account for the serpintine path back
-                        x_coordinate = impulse_to_measurement(int(width_impulses)-x_movement)                           # need to account for the path back
+                        x_coordinate = impulse_to_measurement(int(width_impulses)-x_movement,belt)                           # need to account for the path back
                     else:
                         x_coordinate = impulse_to_measurement(x_movement,belt)
 
