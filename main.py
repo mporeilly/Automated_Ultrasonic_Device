@@ -1,6 +1,7 @@
 import tkinter as tk                                    # import the package for the window 
 from scan_controller import scan_control
 from scan_controller import interpolation_func
+from scan_controller import thickness_interpolation
 from tkinter.filedialog import askopenfilename
 import matplotlib.pyplot as plt
 import numpy as np
@@ -69,7 +70,8 @@ def scan_values_func(gate_start, gate_width, unit):
     while True:
         voltage = scan_voltage(ser)
         thickness = interpolation_func(voltage, gate_start, gate_width)
-        print("Current Voltage Reading " + str(voltage) + 'V, the thickness is '+ str(thickness) +' '+ unit_text)
+        thickness_inter = thickness_interpolation(thickness)
+        print("Current Voltage Reading " + str(voltage) + 'V, the thickness is '+ str(thickness_inter) +' '+ unit_text)
 
 
 # value of 1 indicates inches is selected

@@ -11,6 +11,10 @@ def interpolation_func(voltage, gate_start, gate_width):
     thickness = (((float(voltage)*(float(gate_start)+float(gate_width)-float(gate_start)))/(1)))+float(gate_start)   # linear interpolation
     return thickness
 
+def thickness_interpolation(thick_value):
+    interpolated_thickness = ((289.21*(thick_value**3))-(196.88*(thick_value**2))+(46.959*thick_value)-2.0994)
+    return interpolated_thickness
+
 def scan_control(width, length, gate_start, gate_width, unit, operation_flag, scan_name):
     value_matrix = [] # initalizing the array that will hold the DataPoint values
 
@@ -111,7 +115,8 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     voltage = scan_voltage(ser)
                     print(voltage)                                     # value delivered from the function is a string converted to float for math
                     thickness1 = interpolation_func(float(voltage), gate_start, gate_width)
-                    thickness = ((289.21*(thickness1**3))-(196.88*(thickness1**2))+(46.959*thickness1)-2.0994)
+                    thickness = thickness_interpolation(thickness1)
+                    
                     
                     if (y_movement % 2) > 0: # need to account for the serpintine path back
                         x_coordinate = impulse_to_measurement(int(width_impulses)-x_movement)                           # need to account for the path back
