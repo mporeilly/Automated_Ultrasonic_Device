@@ -34,7 +34,7 @@ def plotting_of_open_file():                           # this function is used t
         scan = df["Scan Area"]   # df is the variable name and .scan_area is the column header 
         X = df["X Coordinate"]
         Y = df["Y Coordinate"]
-        Z = df["Voltage Reading"]
+        Z = df["Measurement Value"]
         units = df["Measurement Units"]
 
         previous_scan_unit = units[1]
