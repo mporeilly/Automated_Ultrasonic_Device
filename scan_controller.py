@@ -63,12 +63,12 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
     # linear interpolation to get the correct thickness from the voltage collected
 
 
-    def measurement_to_impulse(length,radius):                
+    def measurement_to_impulse(length, radius):                
         #returns the number of impulses required to drive the
         impulse_number = int(float(length) / (degrees * ((2 * math.pi) / 360) * radius)) # steps per length
         return impulse_number
 
-    def impulse_to_measurement(impulse,radius):               
+    def impulse_to_measurement(impulse, radius):               
         #returns the distance from the impulse value
         distance_of_impulse = impulse * (degrees * ((2 * math.pi) / 360) * radius)
         return distance_of_impulse
