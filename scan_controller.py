@@ -121,9 +121,9 @@ def scan_control(width, length, gate_start, gate_width, unit, operation_flag, sc
                     if (y_movement % 2) > 0: # need to account for the serpintine path back
                         x_coordinate = impulse_to_measurement(int(width_impulses)-x_movement)                           # need to account for the path back
                     else:
-                        x_coordinate = impulse_to_measurement(x_movement)
+                        x_coordinate = impulse_to_measurement(x_movement,belt)
 
-                    y_coordinate = impulse_to_measurement(y_movement)       
+                    y_coordinate = impulse_to_measurement(y_movement,radius)       
                     value_matrix.append(DataPoint(scan_name, gate_start, gate_width, x_coordinate, y_coordinate, voltage, thickness, unit_text))
                     
                 for line in value_matrix:                      # looping through the lines in the test matrix
