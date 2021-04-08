@@ -95,7 +95,7 @@ width_label.grid(row=5, column=0)
 width_textbox = tk.Entry(root, width=7)
 width_textbox.grid(row=5, column=1, sticky=tk.W)
 
-length_label = tk.Label(root, text='Scan length:')
+length_label = tk.Label(root, text='Scan Length:')
 length_label.grid(row=6, column=0)
 
 length_textbox = tk.Entry(root, width=7)
