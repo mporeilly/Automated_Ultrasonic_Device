@@ -21,7 +21,7 @@ INSTALL INSTRUCTIONS
    >sudo ./setup.sh
 7. Download the Arduino application from the offical site: https://www.arduino.cc/en/software
 8. Plug in the Arduino to the Raspberry Pi with a USB A to B cable
-9. Open the Arduino application and upload **voltagecollector.ino** from the arduino folder within the Capstone folder
+9. Open the Arduino application and upload **voltagecollector.ino** from the arduino folder within the Capstone folder (Edit the parameters to meet voltage levels from scope output)
 
 
 Running the Application
