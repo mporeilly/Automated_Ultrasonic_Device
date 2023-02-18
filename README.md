@@ -1,5 +1,5 @@
 # Capstone
-The files within this repository contain software used to control an Automated Ultrasonic Device that is designed to complete API 563 tank inspections. The software was designed around a Raspberry Pi and Olympus UT scopes capable of outputting scan data as an analog voltage signals between 0 - 1 Volt. Due to interference from the GPIO pins on the Pi an Arduino will collect the voltage values. The values will then be sent to the Pi over a serial connetion in the form of a USB cable. Please refer to the wiring diagram below for the setup.
+The files within this repository contain software used to control an Automated Ultrasonic Device that is designed to complete API 563 tank inspections. The software was designed around a Raspberry Pi and Olympus UT scopes capable of outputting scan data as analog voltage signals between 0 - 1 Volt. Due to interference from the GPIO pins on the Pi an Arduino will collect the voltage values. The values will then be sent to the Pi over a serial connection via a USB cable. Please refer to the wiring diagram below for the setup.
 
 
 ![alt text](https://github.com/mporeilly/Capstone/blob/master/Electrical/Schematic_Wiring%20Diagram.png)
